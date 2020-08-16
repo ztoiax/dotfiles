@@ -160,3 +160,6 @@ switcher:
     - zh_hant
     - zh_hans
     - zh_hant_tw
+
+patch:
+  "style/horizontal": true # 横向显示候选词（并没有什么卵用，ibus-rime 的候选词是由 ibus 控制的）

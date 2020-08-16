@@ -8,7 +8,7 @@ __build_info:
     punctuation: 1584190865
     punctuation.custom: 0
     stroke.custom: 0
-    stroke.schema: 1596187849
+    stroke.schema: 1584206825
 abc_segmentor:
   extra_tags:
     - reverse_lookup
@@ -158,7 +158,7 @@ schema:
   author:
     - "四季的風"
     - "雪齋"
-    - "瑾昀"
+    - "Kunki Chou"
   dependencies:
     - luna_pinyin
   description: |
