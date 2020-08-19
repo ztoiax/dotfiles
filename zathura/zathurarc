@@ -12,4 +12,8 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
+map w fullscreen
+map [fullscreen] w normal
+map [fullscreen] e half-up
+map [fullscreen] d half-down
 map <Space> mark_evaluate
