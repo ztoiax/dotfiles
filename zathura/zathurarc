@@ -2,18 +2,54 @@ set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
 set selection-clipboard clipboard
-map u scroll half-up
-map e scroll half-up
-map d scroll half-down
-map D toggle_page_mode
-map r reload
-map R rotate
+set adjust-open width
+set recolor-keephue
+set show-scrollbars true
+# set window-title-basename true
+# set database sqlite
+
+map [normal]     <F11> toggle_fullscreen
+map [fullscreen] <F11> toggle_fullscreen
+map [normal]     w toggle_fullscreen
+map [fullscreen] w toggle_fullscreen
+
+map [normal] e scroll up
+map [normal] u scroll up
+map [normal] d scroll down
+map [normal] <C-e> navigate previous
+map [normal] <C-d> navigate next
+map [fullscreen] e scroll up
+map [fullscreen] u scroll up
+map [fullscreen] d scroll down
+map [fullscreen] <C-e> navigate previous
+map [fullscreen] <C-d> navigate next
+
+map [normal] i recolor
+map [normal] D toggle_page_mode
+map [normal] <Space> mark_evaluate
+map [normal] <C-k> rotate rotate-ccw
+map [fullscreen] i recolor
+map [fullscreen] D toggle_page_mode
+map [fullscreen] <Space> mark_evaluate
+map [fullscreen] <C-k> rotate rotate-ccw
+map r rotate
 map K zoom in
 map J zoom out
-map i recolor
 map p print
-map w fullscreen
-map [fullscreen] w normal
-map [fullscreen] e half-up
-map [fullscreen] d half-down
-map <Space> mark_evaluate
+
+# colors
+set recolor-darkcolor  "#FFFFFF"
+# set recolor-lightcolor "#000000"
+set recolor-lightcolor "#000000"
+set statusbar-fg "#FFFFFF"
+# set statusbar-bg "#C2BFA5"
+set statusbar-bg "#000000"
+set inputbar-fg "#FFFFFF"
+# set inputbar-bg "#000000"
+set inputbar-bg "#000000"
+set completion-highlight-fg "#F0E68C"
+set completion-highlight-bg "#6B8E20"
+# set highlight-color "#CD850F"
+# set highlight-active-color "#F0E68C"
+set notification-fg "#FFFFFF"
+set notification-bg "#000000"
