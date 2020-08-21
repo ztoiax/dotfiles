@@ -17,11 +17,13 @@ map [normal] e scroll up
 map [normal] u scroll up
 map [normal] d scroll down
 map [normal] <C-e> navigate previous
+map [normal] <C-u> navigate previous
 map [normal] <C-d> navigate next
 map [fullscreen] e scroll up
 map [fullscreen] u scroll up
 map [fullscreen] d scroll down
 map [fullscreen] <C-e> navigate previous
+map [fullscreen] <C-u> navigate previous
 map [fullscreen] <C-d> navigate next
 
 map [normal] i recolor
