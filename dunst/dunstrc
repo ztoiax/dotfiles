@@ -25,7 +25,7 @@
 
     idle_threshold = 120
     # font = Monospace 14
-    font = DroidSansMono Nerd Font 14
+    font = DroidSansMono Nerd Font 20
     line_height = 0
     markup = full
 

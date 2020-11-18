@@ -1,0 +1,49 @@
+[[snippets]]
+  description = "du subdir"
+  command = "du -cha --max-depth=1 ."
+  output = ""
+
+[[snippets]]
+  description = "process boot time"
+  command = "systemd-analyze blame"
+  output = ""
+
+[[snippets]]
+  description = "error journal"
+  command = "journalctl -fp err"
+  output = ""
+
+[[snippets]]
+  description = "reboot Xorg"
+  command = "sudo pkill Xorg"
+  output = ""
+
+[[snippets]]
+  description = "httperf"
+  command = "httperf --hog --server=127.0.0.1 --uri=index.html --num-conns=10000"
+  output = ""
+
+[[snippets]]
+  description = "memory benchmark"
+  command = "sudo hdparm -T /dev/sda"
+  output = ""
+
+[[snippets]]
+  description = "wifi down"
+  command = "adb shell svc wifi disable"
+  output = ""
+
+[[snippets]]
+  description = "wifi up"
+  command = "adb shell svc wifi enable"
+  output = ""
+
+[[snippets]]
+  description = "data up"
+  command = "adb shell svc data enable"
+  output = ""
+
+[[snippets]]
+  description = "data down"
+  command = "adb shell svc data disable"
+  output = ""

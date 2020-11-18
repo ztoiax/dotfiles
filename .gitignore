@@ -1,7 +1,8 @@
 *
-!.gitignore
-!.git
-!ranger
-!mpv
+!pet
 !zathura
+!redshift
+!mpv
 !dunst
+!ranger
+!.gitignore
