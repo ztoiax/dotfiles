@@ -47,3 +47,8 @@
   description = "data down"
   command = "adb shell svc data disable"
   output = ""
+
+[[snippets]]
+  description = "pacman list size"
+  command = "LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h"
+  output = ""
