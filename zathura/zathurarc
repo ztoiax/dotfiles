@@ -5,39 +5,32 @@ set selection-clipboard clipboard
 set adjust-open width
 set recolor-keephue
 set show-scrollbars true
+set smooth-scroll true
+set highlight-transparency 0.1
 # set window-title-basename true
 # set database sqlite
 
-map [normal]     <F11> toggle_fullscreen
+map [normal] <F11> toggle_fullscreen
 map [fullscreen] <F11> toggle_fullscreen
-map [normal]     w toggle_fullscreen
-map [fullscreen] w toggle_fullscreen
 
-map [normal] e scroll up
-map [normal] u scroll up
-map [normal] d scroll down
-map [normal] <C-e> navigate previous
-map [normal] <C-u> navigate previous
-map [normal] <C-d> navigate next
-map [fullscreen] e scroll up
-map [fullscreen] u scroll up
-map [fullscreen] d scroll down
-map [fullscreen] <C-e> navigate previous
-map [fullscreen] <C-u> navigate previous
-map [fullscreen] <C-d> navigate next
+map e scroll up
+map u scroll up
+map d scroll down
+map <C-e> navigate previous
+map <C-u> navigate previous
+map <C-d> navigate next
 
-map [normal] i recolor
-map [normal] D toggle_page_mode
-map [normal] <Space> mark_evaluate
-map [normal] <C-k> rotate rotate-ccw
-map [fullscreen] i recolor
-map [fullscreen] D toggle_page_mode
-map [fullscreen] <Space> mark_evaluate
-map [fullscreen] <C-k> rotate rotate-ccw
+map D toggle_page_mode
+map <Space> mark_evaluate
+map <C-k> rotate rotate-ccw
+
 map r rotate
 map K zoom in
 map J zoom out
 map p print
+map <A-D> recolor
+
+map f follow
 
 # colors
 set recolor-darkcolor  "#FFFFFF"
