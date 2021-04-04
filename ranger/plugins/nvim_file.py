@@ -18,6 +18,7 @@ class nvim_file(Command):
             nvim = attach('socket', path='/tmp/nvim')
         except :
             self.fm.notify('connect nvim error')
+            self.fm.edit_file(filename)
             return
 
         from pathlib import Path
@@ -28,4 +29,5 @@ class nvim_file(Command):
             self.fm.notify(filename)
         else:
             self.fm.notify(filename + ' is not file')
+        nvim.close
         return

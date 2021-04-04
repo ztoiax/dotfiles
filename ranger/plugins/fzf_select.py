@@ -12,14 +12,20 @@ class fzf_select(Command):
     def execute(self):
         import subprocess
         import os.path
-        if self.quantifier:
+        command = "find"
+        lastcommand = " | fzf +m --height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+        if self.arg(1) == '-d':
             # match only directories
-            command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
-            -o -type d -print 2> /dev/null | sed 1d | cut -b3- | fzf +m --height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-        else:
-            # match files and directories
-            command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
-            -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m --height 70% --layout=reverse --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+            command += ' -type d'
+        elif self.arg(1) == '-f':
+            # match only files
+            command += ' -type f'
+
+        # set depth
+        if self.quantifier:
+            command += f' -maxdepth {self.quantifier}'
+
+        command += lastcommand
         fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
