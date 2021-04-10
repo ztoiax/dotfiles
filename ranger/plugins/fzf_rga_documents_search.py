@@ -12,7 +12,14 @@ class fzf_rga_documents_search(Command):
         import subprocess
         import os.path
         from ranger.container.file import File
-        command="rga '' * --rga-adapters=pandoc,poppler | fzf +m"
+        command="rga '' *"
+        lastcommand=' --rga-adapters=pandoc,poppler | fzf +m'
+
+        # set depth
+        if self.quantifier:
+            command += f' --max-depth={self.quantifier}'
+
+        command += lastcommand
         fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
 

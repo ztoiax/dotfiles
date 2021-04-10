@@ -15,7 +15,7 @@ class nvim_file(Command):
         from pynvim import attach
 
         try:
-            nvim = attach('socket', path='/tmp/nvim')
+            nvim = attach('socket', path='/tmp/nvimsocket')
         except :
             self.fm.notify('connect nvim error')
             self.fm.edit_file(filename)
