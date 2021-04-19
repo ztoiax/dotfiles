@@ -3,8 +3,10 @@ from ranger.api.commands import Command
 
 class newyank(Command):
     """
-    new yank command
-    args dir | path | name | name_without_extension | context
+    yank filepath or filename or filename without extension or file context
+
+    Usage: newyank arg
+    arg: dir | path | name | name_without_extension | context
     """
 
     def execute(self):

@@ -8,6 +8,14 @@ class fzf_select(Command):
     With a prefix argument select only directories.
 
     See: https://github.com/junegunn/fzf
+
+    Support self.quantifier
+
+    locate dir:
+    Usage: fzf_select -d
+
+    locate file:
+    Usage: fzf_select -f
     """
     def execute(self):
         import subprocess
