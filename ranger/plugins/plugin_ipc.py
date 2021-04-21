@@ -19,7 +19,11 @@ def hook_init(fm):
     try:
         # Create a FIFO.
         import os
-        ipc_fifo = "/tmp/ranger-ipc." + str(os.getpid())
+        from pathlib import Path
+        if Path('/tmp/ranger-ipc').exists():
+            ipc_fifo = "/tmp/ranger-ipc." + str(os.getpid())
+        else:
+            ipc_fifo = "/tmp/ranger-ipc"
         os.mkfifo(ipc_fifo)
 
         # Start the reader thread.
