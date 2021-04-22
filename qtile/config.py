@@ -42,7 +42,6 @@ home = os.path.expanduser('~')
 
 def window_to_next_group(qtile):
     """Swithcs the actual window to the next group"""
-    group_names = [x.name for x in qtile.groups]
     current_group = qtile.current_group.name
     next_group = qtile.groups[(group_names.index(current_group) + 1) % len(group_names)]
     qtile.current_window.cmd_togroup(next_group.name)
@@ -51,7 +50,6 @@ def window_to_next_group(qtile):
 
 def window_to_prev_group(qtile):
     """Swithcs the actual window to the previous group"""
-    group_names = [x.name for x in qtile.groups]
     current_group = qtile.current_group.name
     next_group = qtile.groups[(group_names.index(current_group) - 1) % len(group_names)]
     qtile.current_window.cmd_togroup(next_group.name)
@@ -105,7 +103,8 @@ keys = [
     Key([mod], "e", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "e", lazy.prev_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "w", lazy.layout.Max(), desc="full layouts"),
+    Key([mod], "w", lazy.to_layout_index(1), desc="full layouts"),
+    Key([mod], "s", lazy.to_layout_index(0), desc="columns layouts"),
     Key([mod], "o", lazy.window.toggle_fullscreen(), desc="full layouts"),
     Key([mod, "shift"], "o", lazy.window.toggle_floating(), desc="full layouts"),
 
@@ -115,8 +114,8 @@ keys = [
 
     ##### Spawn #####
     Key(["control"], "Return", lazy.spawn("adb shell input keyevent 26")),
-    Key([alt, "control"], "n", lazy.spawn("feh --bg-fill --randomize ~/Pictures/wallpapers/*")),
-    # Key([alt, "control"], "a", lazy.spawn("")),
+    Key([alt, "control"], "n", lazy.spawn("feh --bg-fill --randomize " + home + "/Pictures/wallpapers/")),
+    Key([alt, "control"], "a", lazy.spawn("flameshot gui")),
 
     Key([alt, "control"], "Left",  lazy.spawn("xrandr --output HDMI-0 --rotate left")),
     Key([alt, "control"], "Right", lazy.spawn("xrandr --output HDMI-0 --rotate right")),
@@ -129,15 +128,15 @@ keys = [
     Key([alt], "space", lazy.spawn("dmenu_run")),
     Key([alt], "o", lazy.spawn(home + "/.mybin/dmenu-search.py")),
     Key([alt], "u", lazy.spawn(home + "/.mybin/dmenu-url.sh")),
-    Key([alt], "f", lazy.spawn(home + "/.mybin/dmenu-checkfile.sh")),
+    Key([alt], "h", lazy.spawn(home + "/.mybin/dmenu-checkfile.sh")),
 ]
 
 
 groups=[]
-group_names = [ "1", "2", "3", "4", "5", "6", "7", "8"]
-group_labels = [ "", "", "", "", "", "", "", ""]
+group_names = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+group_labels = [ "", "", "", "", "", "", "", "", "", ""]
 
-group_layouts = ["max","columns","columns","columns","columns","columns","columns","columns","max"]
+group_layouts = ["max","columns","columns","columns","columns","columns","columns","columns","max","columns"]
 
 for i in range(len(group_names)):
     groups.extend([Group(
@@ -146,18 +145,19 @@ for i in range(len(group_names)):
         layout=group_layouts[i],
         )])
 
-groups.extend([
-        Group(
-            name="9",
-            label="",
-            layout="max",
+groups[2] = Group(name="3", label="", layout="max",
+            matches=[
+            Match(wm_class=["scrcpy"]),
+            ])
+
+groups[8] = Group(name="9", label="", layout="max",
             matches=[
             Match(wm_class=["netease-cloud-music"]),
             Match(wm_class=["xdman-Main"]),
             Match(wm_class=["qbittorrent"]),
-            ]),
-        Group(name="0",label=""),
- ])
+            Match(wm_class=["thunder"]),
+            ])
+
 
 for i in groups:
     keys.extend([
@@ -252,7 +252,7 @@ transparent = [
     widget.Wallpaper(fmt=' ', background=color['transparent'],foreground=color['click'],),
     # widget.TaskList(highlight_method='border', background=color['transparent'],),
     widget.Clock(background=color['transparent'], format='%Y-%m-%d %H:%M'),
-    widget.QuickExit(default_text='蘆 ', foreground=color['click'],),
+    # widget.QuickExit(default_text='蘆 ', foreground=color['click'],),
 ]
 
 screens = [
@@ -307,11 +307,10 @@ respect_minimize_requests = True
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
-# startup
+##### startup #####
 import subprocess
 from libqtile import hook
 
 @hook.subscribe.startup_once
 def autostart():
-    autostart_blocking = home + '/.dwm/autostart_blocking.sh'
-    subprocess.call(autostart_blocking, shell=True)
+    subprocess.call(home + '/.dwm/autostart_blocking.sh', shell=True)
