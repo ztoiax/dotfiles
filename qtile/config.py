@@ -111,6 +111,7 @@ keys = [
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "b", lazy.hide_show_bar()),
 
     ##### Spawn #####
     Key(["control"], "Return", lazy.spawn("adb shell input keyevent 26")),
@@ -145,7 +146,7 @@ for i in range(len(group_names)):
         layout=group_layouts[i],
         )])
 
-groups[2] = Group(name="3", label="", layout="max",
+groups[3] = Group(name="4", label="", layout="max",
             matches=[
             Match(wm_class=["scrcpy"]),
             ])
