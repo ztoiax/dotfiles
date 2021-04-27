@@ -112,6 +112,7 @@ keys = [
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "b", lazy.hide_show_bar()),
+    Key([mod], "f", lazy.window.toggle_floating()),
 
     ##### Spawn #####
     Key(["control"], "Return", lazy.spawn("adb shell input keyevent 26")),
@@ -157,6 +158,7 @@ groups[8] = Group(name="9", label="", layout="max",
             Match(wm_class=["xdman-Main"]),
             Match(wm_class=["qbittorrent"]),
             Match(wm_class=["thunder"]),
+            Match(wm_class=["peek"]),
             ])
 
 
@@ -297,7 +299,6 @@ reconfigure_screens = True
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
 respect_minimize_requests = True
-
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
@@ -315,3 +316,17 @@ from libqtile import hook
 @hook.subscribe.startup_once
 def autostart():
     subprocess.call(home + '/.dwm/autostart_blocking.sh', shell=True)
+    subprocess.call(home + '/.dwm/autostart.sh', shell=True)
+
+# import asyncio
+
+# async def command(cmd):
+#     proc = await asyncio.create_subprocess_shell(
+#         cmd,
+#         stdout=asyncio.subprocess.PIPE,
+#         stderr=asyncio.subprocess.PIPE)
+
+#     stdout, stderr = await proc.communicate()
+#     return stdout.decode().strip()
+
+# asyncio.run(command('fcitx5 &'))
