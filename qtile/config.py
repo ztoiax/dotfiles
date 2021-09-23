@@ -117,8 +117,8 @@ keys = [
     ##### Spawn #####
     Key(["control"], "Return", lazy.spawn("adb shell input keyevent 26")),
     Key([alt, "control"], "n", lazy.spawn("feh --bg-fill --randomize " + home + "/Pictures/wallpapers/")),
-    Key([alt, "control"], "a", lazy.spawn("flameshot gui")),
-
+    Key([alt, "shift"], "a", lazy.spawn("flameshot gui")),
+    Key([alt, "control"], "a",     lazy.spawn("deepin-screen-recorder")),
     Key([alt, "control"], "Left",  lazy.spawn("xrandr --output HDMI-0 --rotate left")),
     Key([alt, "control"], "Right", lazy.spawn("xrandr --output HDMI-0 --rotate right")),
     Key([alt, "control"], "Up",    lazy.spawn("xrandr --output HDMI-0 --rotate normal")),

@@ -5,7 +5,6 @@ set selection-clipboard clipboard
 set adjust-open width
 set recolor-keephue
 set show-scrollbars true
-set smooth-scroll true
 set highlight-transparency 0.1
 # set window-title-basename true
 # set database sqlite
