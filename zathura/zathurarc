@@ -1,3 +1,5 @@
+# http://manpages.ubuntu.com/manpages/trusty/man5/zathurarc.5.html
+
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
@@ -11,6 +13,10 @@ set highlight-transparency 0.1
 
 map [normal] <F11> toggle_fullscreen
 map [fullscreen] <F11> toggle_fullscreen
+map D toggle_page_mode
+
+map <C-p> jumplist forward
+map <C-o> jumplist backward
 
 map e scroll up
 map u scroll up
@@ -19,7 +25,6 @@ map <C-e> navigate previous
 map <C-u> navigate previous
 map <C-d> navigate next
 
-map D toggle_page_mode
 map <Space> mark_evaluate
 map <C-k> rotate rotate-ccw
 
@@ -35,15 +40,18 @@ map f follow
 set recolor-darkcolor  "#FFFFFF"
 # set recolor-lightcolor "#000000"
 set recolor-lightcolor "#000000"
-set statusbar-fg "#FFFFFF"
-# set statusbar-bg "#C2BFA5"
-set statusbar-bg "#000000"
-set inputbar-fg "#FFFFFF"
-# set inputbar-bg "#000000"
-set inputbar-bg "#000000"
+
 set completion-highlight-fg "#F0E68C"
 set completion-highlight-bg "#6B8E20"
+
 # set highlight-color "#CD850F"
 # set highlight-active-color "#F0E68C"
+
 set notification-fg "#FFFFFF"
 set notification-bg "#000000"
+
+set inputbar-bg "#FFFFFF"
+set inputbar-fg "#000000"
+
+set statusbar-bg "#FFFFFF"
+set statusbar-fg "#000000"
