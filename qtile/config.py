@@ -131,12 +131,13 @@ keys = [
     Key([alt], "o", lazy.spawn(home + "/.mybin/dmenu-search.py")),
     Key([alt, "shift"], "o", lazy.spawn(home + "/.mybin/dmenu-search.py --category")),
     Key([alt], "u", lazy.spawn(home + "/.mybin/dmenu-url.sh")),
-    Key([alt, "shift"], "u", lazy.spawn(home + "/.mybin/dmenu-cpurl.sh")),
-    Key([alt], "l", lazy.spawn(home + "/.mybin/dmenu-cpline.sh")),
-    Key([alt, "shift"], "l", lazy.spawn(home + "/.mybin/dmenu-cpdir.sh")),
-    Key([alt], "F", lazy.spawn(home + "/.mybin/dmenu-checkfile.sh")),
-    Key([alt], "h", lazy.spawn(home + "/.mybin/dmenu-cphistory.sh")),
-    Key([alt, "shift"], "h", lazy.spawn(home + "/.mybin/dmenu-cpcommand.sh")),
+
+    # Key([alt, "shift"], "u", lazy.spawn(home + "/.mybin/dmenu-cpurl.sh")),
+    # Key([alt], "l", lazy.spawn(home + "/.mybin/dmenu-cpline.sh")),
+    # Key([alt, "shift"], "l", lazy.spawn(home + "/.mybin/dmenu-cpdir.sh")),
+    # Key([alt], "F", lazy.spawn(home + "/.mybin/dmenu-checkfile.sh")),
+    # Key([alt], "h", lazy.spawn(home + "/.mybin/dmenu-cphistory.sh")),
+    # Key([alt, "shift"], "h", lazy.spawn(home + "/.mybin/dmenu-cpcommand.sh")),
 ]
 
 
