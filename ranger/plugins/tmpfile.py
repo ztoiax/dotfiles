@@ -19,3 +19,15 @@ class tmpfile(Command):
             else:
                 self.fm.execute_command(f'mv {filename} /tmp')
         return
+
+
+class trash(Command):
+    ''' use trash command instead of rm '''
+
+    def execute(self):
+        cwd = self.fm.thisdir
+        marked_files = cwd.get_selection()
+
+        for filename in marked_files:
+            self.fm.execute_command(f'trash {filename}')
+        return

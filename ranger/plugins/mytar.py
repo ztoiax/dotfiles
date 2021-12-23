@@ -21,4 +21,5 @@ class compression(Command):
         for filename in marked_files:
             p += str(filename) + ' '
         self.fm.execute_command(f'{process} {self.arg(1)} {p}')
+        self.fm.notify(f'{process} {self.arg(1)} {p}')
         return

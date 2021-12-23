@@ -7,7 +7,7 @@ class decompression(Command):
     Usage: decompression
     '''
     def execute(self):
-        # 压缩脚本
+        # 解压脚本
         process = 'myx.sh'
 
         cwd = self.fm.thisdir
@@ -17,4 +17,5 @@ class decompression(Command):
         for filename in marked_files:
             p += str(filename) + ' '
         self.fm.execute_command(f'{process} {p}')
+        self.fm.notify(f'{process} {p}')
         return

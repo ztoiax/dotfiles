@@ -1,7 +1,7 @@
 from ranger.api.commands import Command
 import pathlib
 from iterfzf import iterfzf
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 class mark_filetime(Command):
     '''
@@ -22,13 +22,16 @@ class mark_filetime(Command):
 
         cwd = self.fm.thisdir
 
+        # 时区
+        tz = timezone(timedelta(hours=+8))
+
         # {filename : filetime, ...}
         filetime_dict = {}
         thisdir = pathlib.Path(str(cwd)).iterdir()
         for i in thisdir:
             filename = pathlib.Path(i)
             unixtime = eval(time_command)
-            filetime_dict |= {str(filename.name) : datetime.utcfromtimestamp(unixtime).strftime('%Y-%m-%d_%H:%M:%S')}
+            filetime_dict |= {str(filename.name) : datetime.fromtimestamp(unixtime, tz=tz).strftime("%Y-%m-%d_%H:%M:%S")}
 
         # ['filename  filetime', ...]
         filetime_list = []

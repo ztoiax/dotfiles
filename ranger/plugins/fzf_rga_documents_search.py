@@ -18,7 +18,8 @@ class fzf_rga_documents_search(Command):
         import subprocess
         import os.path
         from ranger.container.file import File
-        command="rga '' *"
+        # command="rga '' *"
+        command="rga '' **/*"
         lastcommand=' --rga-adapters=pandoc,poppler | fzf +m'
 
         # set depth
