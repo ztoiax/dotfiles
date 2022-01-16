@@ -154,6 +154,11 @@ for i in range(len(group_names)):
         layout=group_layouts[i],
         )])
 
+groups[1] = Group(name="2", label="", layout="max",
+            matches=[
+            Match(wm_class=["code"]),
+            ])
+
 groups[3] = Group(name="4", label="", layout="max",
             matches=[
             Match(wm_class=["scrcpy"]),
