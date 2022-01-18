@@ -34,8 +34,9 @@ from libqtile.utils import guess_terminal
 
 mod = "mod4"
 alt = "mod1"
-# terminal = guess_terminal()
-terminal = "st"
+
+# terminal = "st"
+terminal = "alacritty"
 
 import os
 home = os.path.expanduser('~')

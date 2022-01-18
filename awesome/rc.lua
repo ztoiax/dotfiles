@@ -52,8 +52,7 @@ beautiful.font = "DroidSansMono Nerd Font 22"
 beautiful.useless_gap = 5
 
 -- This is used later as the default terminal and editor to run.
--- terminal = "xterm"
-terminal = "st"
+terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
