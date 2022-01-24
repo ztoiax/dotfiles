@@ -170,10 +170,6 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
-local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
-local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
-local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
-local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
 awful.screen.connect_for_each_screen(function(s)
@@ -223,10 +219,6 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             cpu_widget(),
-            ram_widget(),
-            fs_widget(),
-            net_speed_widget(),
-            docker_widget(),
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
@@ -609,17 +601,6 @@ awful.spawn.with_shell("~/.dwm/autostart.sh")
 
 -- require("titlebar")
 
--- 日历
--- local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
--- mytextclock = wibox.widget.textclock()
--- -- local cw = calendar_widget()
--- local cw = calendar_widget({
---     theme = 'outrun',
---     placement = 'bottom_right',
---     radius = 8
--- })
--- mytextclock:connect_signal("button::press",
---     function(_, _, _, button)
---         if button == 1 then cw.toggle() end
---     end)
-
+-- local chosen_theme= "ayu"
+-- beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+-- awful.screen.connect_for_each_screen(beautiful.at_screen_connect)
