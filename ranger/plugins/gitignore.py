@@ -1,5 +1,6 @@
 from ranger.api.commands import Command
 
+
 class gitignore(Command):
     """
     useage:

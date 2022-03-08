@@ -33,10 +33,12 @@ class fzf_filter(Command):
 
             if select in type_set:
                 self.fm.execute_console(f'filter_stack add type {select}')
+                self.fm.execute_console(f'filter_stack add or')
                 self.fm.notify(f'filter_stack add type {select}')
             else:
-                self.fm.execute_console(f'filter {select}')
-                self.fm.notify(f'filter {select}')
+                self.fm.execute_console(f'filter_stack add name {select}')
+                self.fm.execute_console(f'filter_stack add or')
+                self.fm.notify(f'filter_stack add name {select}')
         else:
             select = self.fm.thisfile.basename
             file = pathlib.Path(str(select))
