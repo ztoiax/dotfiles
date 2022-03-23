@@ -30,19 +30,28 @@ class fzf_rga_documents_search(Command):
         fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
 
+        # 获取文件名
         file_name = stdout.rsplit()[0]
         file_name = file_name.rsplit(':')[0]
 
         if self.arg(1) == 'open':
+            # 获取拓展名
             file_type = file_name.rsplit('.')[-1]
 
             if file_type == 'pdf':
+                self.fm.notify('pdf')
+                # 获取搜索内容
                 file_context = stdout.rsplit()[-1]
-                command = 'zathura {0} -f {1}'.format(file_name, file_context)
-                self.fm.execute_command(command)
-            else:
-                fzf_file = os.path.abspath(file_name.rstrip('\n'))
-                self.fm.execute_file(File(fzf_file))
+            elif file_type == 'epub':
+                # 获取搜索内容
+
+                self.fm.notify('epub')
+                file_context = stdout.rsplit(']')[-1].rstrip()
+
+            command = 'zathura {0} -f {1} &'.format(file_name, file_context)
+
+            self.fm.notify(command)
+            self.fm.execute_command(command)
         else:
             fzf_file = os.path.abspath(file_name.rstrip('\n'))
             self.fm.select_file(fzf_file)
