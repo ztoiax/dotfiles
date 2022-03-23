@@ -6,10 +6,12 @@ set page-padding 1
 set selection-clipboard clipboard
 set adjust-open width
 set recolor-keephue
-set show-scrollbars true
 set highlight-transparency 0.1
 # set window-title-basename true
 # set database sqlite
+
+# s: 底部状态栏, v: 滚动条
+set guioptions sv
 
 map [normal] <F11> toggle_fullscreen
 map [fullscreen] <F11> toggle_fullscreen
