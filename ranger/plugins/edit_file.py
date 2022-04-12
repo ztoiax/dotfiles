@@ -16,7 +16,8 @@ class edit_file(Command):
             editor = 'code -g'
             self.fm.notify('use vscode')
         else:
-            editor = 'nvr'
+            # editor = 'nvr'
+            editor = 'nvim --server /tmp/nvim.pipe --remote '
             self.fm.notify('use neovim')
 
         cwd = self.fm.thisdir

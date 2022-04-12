@@ -12,7 +12,7 @@ class fzf_rga_documents_search(Command):
     Usage: fzf_rga_search_documents
 
     open file:
-    Usage: fzf_rga_search_documents -open
+    Usage: fzf_rga_search_documents open
     """
     def execute(self):
         import subprocess
@@ -39,14 +39,15 @@ class fzf_rga_documents_search(Command):
             file_type = file_name.rsplit('.')[-1]
 
             if file_type == 'pdf':
-                self.fm.notify('pdf')
                 # 获取搜索内容
                 file_context = stdout.rsplit()[-1]
             elif file_type == 'epub':
                 # 获取搜索内容
 
-                self.fm.notify('epub')
-                file_context = stdout.rsplit(']')[-1].rstrip()
+                if ']' in stdout:
+                    file_context = stdout.rsplit(']')[-1].rstrip()
+                else:
+                    file_context = stdout.rsplit(':')[-1].rstrip()
 
             command = 'zathura {0} -f {1} &'.format(file_name, file_context)
 

@@ -3,7 +3,7 @@ import pathlib
 from iterfzf import iterfzf
 from datetime import datetime, timezone, timedelta
 
-class mark_filetime(Command):
+class fzf_mark_filetime(Command):
     '''
     Mark files at the same time
     '''
@@ -42,6 +42,9 @@ class mark_filetime(Command):
         select = iterfzf(filetime_list)
         select = select.split()[1]
         self.fm.notify(select)
+
+        # 刷新
+        self.fm.execute_console('redraw_window')
 
         for k, v in filetime_dict.items():
             if v == select:
