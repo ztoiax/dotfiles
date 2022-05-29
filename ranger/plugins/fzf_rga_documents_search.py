@@ -20,7 +20,7 @@ class fzf_rga_documents_search(Command):
         from ranger.container.file import File
         # command="rga '' *"
         command="rga '' **/*"
-        lastcommand=' --rga-adapters=pandoc,poppler | fzf +m'
+        lastcommand=' --rga-adapters=pandoc,poppler | fzf -m'
 
         # set depth
         if self.quantifier:

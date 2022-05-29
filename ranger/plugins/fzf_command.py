@@ -9,7 +9,8 @@ class fzf_command(Command):
 
     def execute(self):
         select = iterfzf(self.fm.commands.commands)
-        self.fm.execute_console(f'console {select}')
+        if select:
+            self.fm.execute_console(f'console {select}')
 
         # 刷新
         self.fm.execute_console('redraw_window')

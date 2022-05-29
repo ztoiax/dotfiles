@@ -169,8 +169,8 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
-local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+-- local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+-- local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -218,12 +218,12 @@ awful.screen.connect_for_each_screen(function(s)
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
-            cpu_widget(),
+            -- cpu_widget(),
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            logout_menu_widget(),
+            -- logout_menu_widget(),
             s.mylayoutbox,
         },
     }

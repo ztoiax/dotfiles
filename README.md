@@ -1,5 +1,12 @@
 # ranger
 
+## preview
+```sh
+# BitTorrent
+pacman -S transmission-cli
+```
+
+
 ## add preview_images_method mpv
 
 - add mpv class

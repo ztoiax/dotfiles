@@ -11,9 +11,9 @@ class fzf_bookmarks(Command):
         for k, v in iter(self.fm.bookmarks):
             list1.append(str(v))
 
-        self.fm.notify(list1[0])
         select = iterfzf(list1)
-        self.fm.cd(select)
+        if select:
+            self.fm.cd(select)
 
         # 刷新
         self.fm.execute_console('redraw_window')

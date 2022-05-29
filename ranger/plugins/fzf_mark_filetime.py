@@ -40,16 +40,19 @@ class fzf_mark_filetime(Command):
             filetime_list.append(kv)
 
         select = iterfzf(filetime_list)
+
+        if select is None:
+            # 刷新
+            self.fm.execute_console('redraw_window')
+            return
+
         select = select.split()[1]
         self.fm.notify(select)
-
-        # 刷新
-        self.fm.execute_console('redraw_window')
 
         for k, v in filetime_dict.items():
             if v == select:
                 self.fm.execute_console(f'mark {k}')
 
-        # The refresh problem is not yet resolved
-        # self.fm.ui.win.refresh()
+        # 刷新
+        self.fm.execute_console('redraw_window')
         return
