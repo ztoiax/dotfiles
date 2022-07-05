@@ -5,17 +5,16 @@ EnumerateWithTriggerKeys=True
 EnumerateSkipFirst=False
 
 [Hotkey/TriggerKeys]
-0=Control+space
-1=Zenkaku_Hankaku
+0=Shift+Shift_L
 
 [Hotkey/AltTriggerKeys]
 0=Shift_L
 
 [Hotkey/EnumerateForwardKeys]
-0=Shift+Shift_L
+0=Control+Shift_L
 
 [Hotkey/EnumerateBackwardKeys]
-0=Shift+Shift_L
+0=Control+Shift_R
 
 [Hotkey/EnumerateGroupForwardKeys]
 0=Super+space
@@ -48,7 +47,7 @@ EnumerateSkipFirst=False
 # Active By Default
 ActiveByDefault=False
 # Share Input State
-ShareInputState=All
+ShareInputState=No
 # Show preedit in application
 PreeditEnabledByDefault=True
 # Show Input Method Information when switch input method
@@ -60,7 +59,11 @@ CompactInputMethodInformation=True
 # Show first input method information
 ShowFirstInputMethodInformation=True
 # Default page size
-DefaultPageSize=6
+DefaultPageSize=5
+# Override Xkb Option
+OverrideXkbOption=False
+# Custom Xkb Option
+CustomXkbOption=
 # Force Enabled Addons
 EnabledAddons=
 # Force Disabled Addons
