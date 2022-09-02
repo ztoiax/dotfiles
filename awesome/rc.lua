@@ -442,6 +442,7 @@ end
 globalkeys = gears.table.join(globalkeys,
     awful.key({ mod1 }, "space" , shell("dmenu_run")),
     awful.key({ mod1 }, "o" , shell("~/.mybin/dmenu-search.py")),
+    awful.key({ mod1, "Shift" }, "o" , shell("~/.mybin/dmenu-search.py --category")),
     -- awful.key({ mod1 , "shift"}, "o" , shell("~/.mybin/dmenu-search.py  --category")),
     awful.key({ mod1 }, "u" , shell("~/.mybin/dmenu-url.py")),
 
