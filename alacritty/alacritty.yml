@@ -105,6 +105,7 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: DroidSansMono Nerd Font
+    # family: SourceCodePro Medium
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
