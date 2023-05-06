@@ -1,0 +1,38 @@
+{
+    "aghdmmgjekdp": {
+        "creationDate": 1683351772,
+        "displayName": "芝加哥66.to",
+        "lastConnected": 1683351776,
+        "lastUpdatedDate": 1683351772,
+        "stats": [
+            {
+                "downLinkData": 4068608,
+                "upLinkData": 217474
+            }
+        ]
+    },
+    "jcurcyrvrfev": {
+        "creationDate": 1683351772,
+        "displayName": "芝加哥66.to_cloudflare_加速节点2",
+        "lastConnected": 0,
+        "lastUpdatedDate": 1683351772
+    },
+    "muipjiyzwaok": {
+        "creationDate": 1683351772,
+        "displayName": "芝加哥66.to_cloudflare_测试节点",
+        "lastConnected": 0,
+        "lastUpdatedDate": 1683351772
+    },
+    "pzgdjjiajxmg": {
+        "creationDate": 1683351772,
+        "displayName": "芝加哥66.to_cloudflare_加速节点1",
+        "lastConnected": 0,
+        "lastUpdatedDate": 1683351772
+    },
+    "twujckvjhrxn": {
+        "creationDate": 1683351772,
+        "displayName": "芝加哥66.to_cloudflare_IPV6",
+        "lastConnected": 0,
+        "lastUpdatedDate": 1683351772
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "null": {
+        "routeConfig": {
+            "domainMatcher": "mph",
+            "domainStrategy": "AsIs",
+            "domains": {
+            },
+            "ips": {
+            }
+        }
+    },
+    "uskyuzifivhd": {
+        "routeConfig": {
+            "domainMatcher": "mph",
+            "domainStrategy": "AsIs",
+            "domains": {
+            },
+            "ips": {
+            }
+        }
+    },
+    "vgnyonwllyjx": {
+        "routeConfig": {
+            "domainMatcher": "mph",
+            "domainStrategy": "AsIs",
+            "domains": {
+            },
+            "ips": {
+            }
+        }
+    },
+    "vnvlmtdrwucu": {
+        "routeConfig": {
+            "domainMatcher": "mph",
+            "domainStrategy": "AsIs",
+            "domains": {
+            },
+            "ips": {
+            }
+        }
+    }
+}

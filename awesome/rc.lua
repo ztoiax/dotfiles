@@ -447,6 +447,7 @@ globalkeys = gears.table.join(globalkeys,
     awful.key({ mod1 }, "u" , shell("~/.mybin/dmenu-url.py")),
 
     awful.key({ mod1, "Control" }, "a" , shell("deepin-screen-recorder")),
+    awful.key({ mod1, "Control", "Shift"  }, "a" , shell("flameshot gui")),
     -- awful.key({ mod1, "Control", "shift" }, "a" , shell("flameshot gui")),
     awful.key({ mod1, "Control" }, "Left",  shell("xrandr --output HDMI-0 --rotate left")),
     awful.key({ mod1, "Control" }, "Right", shell("xrandr --output HDMI-0 --rotate right")),
@@ -550,11 +551,11 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     { rule = { class = "netease-cloud-music" }, properties = { screen = 1, tag = "9", floating = false }},
+    { rule = { class = "lx-music-desktop" }, properties = { screen = 1, tag = "9", floating = false }},
     { rule = { class = "xdman" }, properties = { screen = 1, tag = "9", floating = false }},
+    { rule = { class = "qv2ray" }, properties = { screen = 1, tag = "9", floating = false }},
+    { rule = { class = "linuxqq" }, properties = { screen = 1, tag = "9", floating = false }},
     { rule = { class = "qbittorrent" }, properties = {  screen = 1, tag = "9", floating = false }},
-    { rule = { class = "peek" }, properties = { screen = 1, tag = "9", floating = false }},
-    { rule = { class = "xunlei" }, properties = { screen = 1, tag = "9", floating = false }},
-    { rule = { class = "yesplaymusic" }, properties = { screen = 1, tag = "9", floating = false }},
 
     { rule = { class = "code" }, properties = { screen = 1, tag = "2", floating = false }},
     { rule = { class = "scrcpy" }, properties = { screen = 1, tag = "4", floating = false }},

@@ -9,7 +9,7 @@ class image2avif(Command):
     '''
     def execute(self):
         # 支持转换的格式
-        image_suffix = ['.png', '.jpg', '.jpeg', '.webp']
+        image_suffix = ['.png', '.jpg', '.jpeg', '.webp', '.svg']
         # 转换后的格式
         to_suffix = '.avif'
 

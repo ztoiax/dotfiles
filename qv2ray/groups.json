@@ -1,0 +1,20 @@
+{
+    "000000000000": {
+        "connections": [
+            "pzgdjjiajxmg",
+            "jcurcyrvrfev",
+            "twujckvjhrxn",
+            "muipjiyzwaok",
+            "aghdmmgjekdp"
+        ],
+        "creationDate": 1674722465,
+        "displayName": "預設分组",
+        "isSubscription": true,
+        "lastUpdatedDate": 1683351772,
+        "routeConfigId": "vgnyonwllyjx",
+        "subscriptionOption": {
+            "address": "https://v2.tanka.ac.cn/api/v1/client/subscribe?token=b8add10c8e2fe8588476ab819e84946a\n",
+            "type": "simple_base64"
+        }
+    }
+}
