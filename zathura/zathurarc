@@ -20,6 +20,8 @@ map D toggle_page_mode
 map <C-p> jumplist forward
 map <C-o> jumplist backward
 
+map k previous
+map j down
 map e scroll up
 map u scroll up
 map d scroll down
@@ -37,6 +39,11 @@ map p print
 map <A-D> recolor
 
 map f follow
+
+# 目录
+map t toggle_index
+# 底部栏
+map <A-B> toggle_statusbar
 
 # colors
 set recolor-darkcolor  "#FFFFFF"
