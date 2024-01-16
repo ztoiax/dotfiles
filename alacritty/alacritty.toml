@@ -1,0 +1,151 @@
+ipc_socket = true
+live_config_reload = true
+# theme = "Afterglow"
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.bright]
+black = "#636363"
+blue = "#7eaac7"
+cyan = "#86d3ce"
+green = "#909d63"
+magenta = "#aa6292"
+red = "#bc5653"
+white = "#f7f7f7"
+yellow = "#ebc17a"
+
+[colors.cursor]
+cursor = "#d9d9d9"
+text = "#2c2c2c"
+
+[colors.dim]
+black = "#232323"
+blue = "#556b79"
+cyan = "#5c8482"
+green = "#5e6547"
+magenta = "#6e4962"
+red = "#74423f"
+white = "#828282"
+yellow = "#8b7653"
+
+[colors.normal]
+black = "#1c1c1c"
+blue = "#7eaac7"
+cyan = "#86d3ce"
+green = "#909d63"
+magenta = "#aa6292"
+red = "#bc5653"
+white = "#cacaca"
+yellow = "#ebc17a"
+
+[colors.primary]
+background = "#2c2c2c"
+# bright_background = "#3a3a3a"
+bright_foreground = "#d9d9d9"
+# dim_background = "#202020"
+dim_foreground = "#dbdbdb"
+foreground = "#d6d6d6"
+
+[font]
+size = 22.0
+
+[font.bold]
+family = "DroidSansMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "DroidSansMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "DroidSansMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "DroidSansMono Nerd Font"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Paste"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Copy"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ClearLogNotice"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\f"
+key = "L"
+mode = "~Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollHalfPageUp"
+key = "K"
+mode = "~Alt"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ScrollHalfPageDown"
+key = "J"
+mode = "~Alt"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F11"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+# [[keyboard.bindings]]
+# action = "DecreaseFontSize"
+# key = "Underline"
+# mods = "Control"
+
+[[keyboard.bindings]]
+action = "Minimize"
+key = "H"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "SearchForward"
+key = "F"
+mode = "~Search"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Escape"
+mode = "~Search"
+mods = "Control"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 100000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+
+[window]
+opacity = 0.8
