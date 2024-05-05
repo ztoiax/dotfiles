@@ -48,7 +48,7 @@ dim_foreground = "#dbdbdb"
 foreground = "#d6d6d6"
 
 [font]
-size = 22.0
+size = 16.0
 
 [font.bold]
 family = "DroidSansMono Nerd Font"

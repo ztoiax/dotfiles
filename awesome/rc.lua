@@ -49,7 +49,7 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 -- 字体
 beautiful.font = "DroidSansMono Nerd Font 22"
 -- 边框
-beautiful.useless_gap = 5
+beautiful.useless_gap = 8
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -172,6 +172,9 @@ screen.connect_signal("property::geometry", set_wallpaper)
 -- local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 -- local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
+-- 电池插件
+local battery_widget = require("battery-widget")
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -223,8 +226,33 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
+            -- 电池插件
+            battery_widget {
+              ac = "AC",
+              adapter = "BAT0",
+              ac_prefix = "AC: ",
+              battery_prefix = "Bat: ",
+              percent_colors = {
+                { 25, "red"   },
+                { 50, "orange"},
+                {999, "green" },
+              },
+              listen = true,
+              timeout = 10,
+              widget_text = "${AC_BAT}${color_on}${percent}%${color_off}",
+              widget_font = "Deja Vu Sans Mono 16",
+              tooltip_text = "Battery ${state}${time_est}\nCapacity: ${capacity_percent}%",
+              alert_threshold = 5,
+              alert_timeout = 0,
+              alert_title = "Low battery !",
+              alert_text = "${AC_BAT}${time_est}",
+              alert_icon = "~/Downloads/low_battery_icon.png",
+              warn_full_battery = true,
+              full_battery_icon = "~/Downloads/full_battery_icon.png",
+            },
             -- logout_menu_widget(),
             s.mylayoutbox,
+
         },
     }
 end)
@@ -455,8 +483,16 @@ globalkeys = gears.table.join(globalkeys,
     awful.key({ mod1, "Control" }, "Up",    shell("xrandr --output HDMI-0 --rotate normal")),
     awful.key({ mod1, "Control" }, "Down",  shell("xrandr --output HDMI-0 --rotate inverted")),
 
-    awful.key({ mod1 }, "n",  shell("amixer --card=2 set Master 5db-")),
-    awful.key({ mod1 }, "m",  shell("amixer --card=2 set Master 5db+")),
+    -- 声音
+    awful.key({ mod1 }, "n",  shell("amixer --card=1 set Master 5db-")),
+    awful.key({ mod1 }, "m",  shell("amixer --card=1 set Master 5db+")),
+    awful.key({ mod1 }, "F6",  shell("amixer --card=1 set Master toggle")),
+    awful.key({ mod1 }, "F7",  shell("amixer --card=1 set Master 5db-")),
+    awful.key({ mod1 }, "F8",  shell("amixer --card=1 set Master 5db+")),
+
+    -- 亮度
+    awful.key({ mod1 }, "F2",  shell("brightnessctl set 5-")),
+    awful.key({ mod1 }, "F3",  shell("brightnessctl set 5+")),
 
     awful.key({ "Control" }, "Return" , shell("adb shell input keyevent 26")),
     awful.key({ mod1, "Control"}, "n" , shell("feh --bg-fill --randomize ~/Pictures/wallpapers/")),
@@ -557,6 +593,7 @@ awful.rules.rules = {
     { rule = { class = "localsend" }, properties = { screen = 1, tag = "9", floating = false }},
     { rule = { class = "qv2ray" }, properties = { screen = 1, tag = "9", floating = false }},
     { rule = { class = "linuxqq" }, properties = { screen = 1, tag = "9", floating = false }},
+    -- { rule = { class = "wechat-uos-qt" }, properties = { screen = 1, tag = "9", floating = false }},
     { rule = { class = "qbittorrent" }, properties = {  screen = 1, tag = "9", floating = false }},
 
     { rule = { class = "code" }, properties = { screen = 1, tag = "2", floating = false }},
