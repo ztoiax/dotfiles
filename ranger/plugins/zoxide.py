@@ -60,4 +60,3 @@ class z(ranger.api.commands.Command):
     def tab(self, tabnum):
         results = self.query(self.args[1:])
         return ["z {}".format(x) for x in results]
-

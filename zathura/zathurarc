@@ -1,5 +1,7 @@
 # http://manpages.ubuntu.com/manpages/trusty/man5/zathurarc.5.html
 
+set font "思源黑体 CN 16"
+
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1

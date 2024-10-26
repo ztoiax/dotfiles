@@ -120,6 +120,17 @@ handle_extension() {
         # markdown
         md)
             glow -s dark -- "${FILE_PATH}" && exit 5
+            see -- "${FILE_PATH}" && exit 5
+            mdcat -- "${FILE_PATH}" && exit 5
+            ;;
+
+        # video
+        ts|mp4)
+            # Get frame 10% into video
+            ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
+
+            # Get embedded thumbnail
+            ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy "${IMAGE_CACHE_PATH}" && exit 6
             ;;
 
         ## Direct Stream Digital/Transfer (DSDIFF) and wavpack aren't detected
@@ -276,10 +287,11 @@ handle_mime() {
     case "${mimetype}" in
         # Text
         text/* | */xml)
-            COLORTERM=8bit bat --color=always --style=plain --line-range=':100' "$@" \
+            COLORTERM=8bit bat --color=always --style=plain --line-range=':100' \
                 -- "${FILE_PATH}" && exit 5
-            pygmentize -f "terminal" -O "style=${PYGMENTIZE_STYLE}"\
-                -- "${FILE_PATH}" && exit 5
+
+            # pygmentize -f "terminal" -O "style=${PYGMENTIZE_STYLE}"\
+            #     -- "${FILE_PATH}" && exit 5
             exit 2;;
 
         # DjVu
