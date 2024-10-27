@@ -1,0 +1,88 @@
+# 默认的keymap.toml https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/keymap.toml
+
+# 按一次 Esc 关闭输入
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
+
+[manager]
+prepend_keymap = [
+	# Goto
+  { on = [ "g", "/" ], run  = 'cd /' , desc = "Cd to /" },
+  { on = [ "g", "t" ], run  = 'cd /tmp' , desc = "Cd to /tmp" },
+  { on = [ "g", "m" ], run  = 'cd /mnt' , desc = "Cd to /mnt" },
+  { on = [ "g", "d" ], run  = 'cd ~/Downloads', desc = "Cd to ~/Downloads" },
+  { on = [ "g", "p" ], run  = 'cd ~/Pictures' , desc = "Cd to ~/Pictures" },
+  { on = [ "g", "n" ], run  = 'cd ~/notes' , desc = "Cd to ~/notes" },
+  { on = [ "g", "b" ], run  = 'cd ~/books' , desc = "Cd to ~/books" },
+  { on = [ "g", "r" ], run = ''' shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm ''', desc = "cd回到当前Git仓库的根目录"},
+
+	# Navigation
+  { on = "k", run = "plugin --sync arrow --args=-1" },
+  { on = "j", run = "plugin --sync arrow --args=1" },
+  { on = "K", run = "plugin --sync parent-arrow --args=-1" },
+  { on = "J", run = "plugin --sync parent-arrow --args=1" },
+  { on = "l", run  = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
+	{ on = "L", run = "open --interactive", desc = "Open selected files interactively" },
+  { on = "e", run = "plugin --sync max-preview", desc = "Maximize or restore preview" },
+
+
+  { on  = "<C-n>", run = ''' shell 'dragon -x -i -T "$1"' --confirm ''', desc = "Drag and drop via dragon" },
+  { on = [ "m", "a" ], run  = "plugin archivemount --args=mount", desc = "Mount selected archive" },
+  { on = [ "m", "u" ], run  = "plugin archivemount --args=unmount", desc = "Unmount and save changes to original archive" },
+  { on = [ ",", "s" ], run = "plugin file-actions --args='around '", desc= "Perform actions on selected files" },
+
+	# Operation
+	{ on = [ ",", "f" ], run = "filter --smart", desc = "Filter files" },
+	{ on = "?",    run = "help", desc = "Open help" },
+	{ on = "<C-e>", run = "arrow -50%",  desc = "Move cursor up half page" },
+	{ on = [ "d", "d" ],         run = "yank --cut",                  desc = "Yank selected files (cut)" },
+	{ on = [ "y", "y" ], run = "yank",                                      desc = "Copy the selected characters" },
+	{ on = "D",         run = "remove",                      desc = "Trash selected files" },
+	{ on = [ "d", "D" ], run = "remove --permanently",        desc = "Permanently delete selected files" },
+	{ on = "A",         run = "create",                      desc = "Create a file (ends with / for directories)" },
+	{ on = "a",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
+	{ on = "zz",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
+  { on = [ "c", "m" ], run  = "plugin chmod", desc = "Chmod on selected files" },
+  { on  = "yc", run = [
+    '''
+	    shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm
+    ''',
+    '''
+    shell 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' --confirm
+    ''',
+    "yank"
+  ], desc = "将选定的文件复制到系统剪贴板" },
+  # { on = "p", run  = "plugin --sync smart-paste", desc = "粘贴文件，而无需进入目录" },
+
+  # Find
+  { on = [ "f","a" ], run  = "plugin fg", desc = "find file by content (fuzzy match)" },
+  { on = [ "f","A" ], run  = "plugin fg --args='rg'", desc = "find file by content (ripgrep match)" },
+  { on = [ "f","f" ], run  = "plugin fg --args='fzf'", desc = "find file by filename" },
+
+	# Toggle
+	{ on = "i", run = [ "toggle", "arrow 1" ], desc = "Toggle the current selection state" },
+
+	# Sorting
+	{ on = [ "o", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
+	{ on = [ "o", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
+	{ on = [ "o", "b" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by birth time" },
+	{ on = [ "o", "B" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort by birth time (reverse)" },
+	{ on = [ "o", "e" ], run = "sort extension --reverse=no",                   desc = "Sort by extension" },
+	{ on = [ "o", "E" ], run = "sort extension --reverse",                      desc = "Sort by extension (reverse)" },
+	{ on = [ "o", "a" ], run = "sort alphabetical --reverse=no",                desc = "Sort alphabetically" },
+	{ on = [ "o", "A" ], run = "sort alphabetical --reverse",                   desc = "Sort alphabetically (reverse)" },
+	{ on = [ "o", "n" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
+	{ on = [ "o", "N" ], run = "sort natural --reverse",                        desc = "Sort naturally (reverse)" },
+	{ on = [ "o", "S" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort by size" },
+	{ on = [ "o", "s" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort by size (reverse)" },
+	{ on = [ "o", "r" ], run = "sort random --reverse=no",                      desc = "Sort randomly" },
+
+	# Copy
+	{ on = [ "y", "p" ], run = "copy path",             desc = "Copy the file path" },
+	{ on = [ "y", "d" ], run = "copy dirname",          desc = "Copy the directory path" },
+	{ on = [ "y", "n" ], run = "copy filename",         desc = "Copy the filename" },
+	{ on = [ "y", "m" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
+]
+

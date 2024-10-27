@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "yazi-rs/plugins:git", rev = "ad52adf" }, { use = "yazi-rs/plugins:full-border", rev = "ad52adf" }, { use = "yazi-rs/plugins:max-preview", rev = "ad52adf" }, { use = "Reledia/glow", rev = "f52b382" }, { use = "GrzegorzKozub/mdcat", rev = "1706af4" }, { use = "Reledia/miller", rev = "40e0265" }, { use = "Sonico98/exifaudio", rev = "855ff05" }, { use = "Tyarel8/video-ffmpeg", rev = "fe26a18" }, { use = "ndtoan96/ouch", rev = "d13f7c0" }, { use = "sharklasers996/eza-preview", rev = "7ca4c25" }, { use = "kirasok/torrent-preview", rev = "76970b6" }, { use = "AnirudhG07/nbpreview", rev = "52a14b3" }, { use = "dawsers/dual-pane", rev = "b991237" }, { use = "Ape/simple-status", rev = "709f653" }, { use = "yazi-rs/plugins:chmod", rev = "ad52adf" }, { use = "KKV9/command", rev = "dc9b483" }, { use = "AnirudhG07/archivemount", rev = "e82e38e" }, { use = "yazi-rs/plugins:diff", rev = "ad52adf" }, { use = "llanosrocas/githead", rev = "bf150f3" }, { use = "yazi-rs/plugins:smart-filter", rev = "ad52adf" }, { use = "yazi-rs/plugins:mime-ext", rev = "ad52adf" }]
+
+[flavor]
+deps = []

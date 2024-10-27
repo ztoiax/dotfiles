@@ -1,0 +1,158 @@
+# 默认的yazi.toml https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/yazi.toml
+
+[manager]
+show_hidden = true
+# linemode = "size_and_mtime"
+
+# 父级宽度为1/8，当前宽度为3/8，预览宽度为4/8
+ratio = [1, 3, 4]
+# 默认按字母排序
+sort_by = "alphabetical"
+
+[opener]
+# orphan：即使Yazi已经退出，也保持进程运行，一旦指定，进程将从任务调度系统中分离。
+play = [
+
+  { run = 'mpv --fs --force-window "$@"', orphan = true, for = "unix" },
+  { run = 'vlc --fullscreen "$@"', orphan = true, desc = "vlc", for = "unix" },
+  { run = 'xdg-open "$@"', orphan = true, desc = "Open with web" },
+  { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+]
+# 以阻塞方式打开。设置后，yazi将隐藏到一个副屏幕，并显示在主屏幕上的程序，直到它退出。在此期间，它可以接收I/O信号，这对交互式程序很有用。
+edit = [
+  { run = '$EDITOR "$@"', block = true, desc = "nvim", for = "unix" },
+  { run = 'code "$@"', orphan = true, desc = "vscode", for = "unix" },
+]
+open = [
+  { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
+  { run = 'open "$@"', desc = "Open", for = "macos" },
+  { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+]
+reveal = [
+  { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+  { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
+  { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
+  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+]
+open_image = [
+  { run = 'swayimg --fullscreen "$@"', orphan = true, desc = "swayimg" },
+  { run = 'nomacs --fullscreen "$@"', orphan = true, desc = "nomacs" },
+  { run = 'qimgv "$@"', orphan = true, desc = "qimgv" },
+]
+extract = [
+  { run = 'engrampa "$@"', orphan = true, desc = "open with engrampa", for = "unix" },
+  { run = 'ya pub extract --list "$@"', desc = "Extract here with ya pub extract", for = "unix" },
+  { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
+  { run = 'myx.sh "$@"', desc = "Extract here with myx.sh", for = "unix" },
+]
+open_pdf = [
+  { run = 'zathura --mode fullscreen "$@"', orphan = true, desc = "zathura" },
+  { run = 'sioyek "$@"', orphan = true, desc = "sioyek" },
+]
+
+[open]
+rules = [
+  # Folder
+  { name = "*/", use = [
+    "edit",
+    "open",
+    "reveal",
+  ] },
+  # Text
+  { mime = "text/*", use = [
+    "edit",
+    "reveal",
+  ] },
+  # Image
+  { mime = "image/*", use = "open_image" },
+  # Media
+  { mime = "{audio,video}/*", use = [
+    "play",
+    "reveal",
+  ] },
+  # Archive
+  { mime = "application/{,g}zip", use = [
+    "extract",
+    "reveal",
+  ] },
+  { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", use = [
+    "extract",
+    "reveal",
+  ] },
+  { mime = "application/zstd", use = "extract" },
+  # JSON
+  { mime = "application/{json,x-ndjson}", use = [
+    "edit",
+    "reveal",
+  ] },
+  { mime = "*/javascript", use = [
+    "edit",
+    "reveal",
+  ] },
+  # Empty file
+  { mime = "inode/x-empty", use = [
+    "edit",
+    "reveal",
+  ] },
+  # pdf、epub、mobi
+  { mime = "application/pdf", use = [
+    "open_pdf",
+    "open",
+  ] },
+  { mime = "application/epub*", use = [
+    "open_pdf",
+    "open",
+  ] },
+  { mime = "application/mobi*", use = [
+    "open_pdf",
+    "open",
+  ] },
+  # Fallback
+  { name = "*", use = [
+    "open",
+    "reveal",
+  ] },
+]
+prepend_rules = []
+# 始终优先于默认的优先级规则。
+append_rules = []
+
+[plugin]
+# https://yazi-rs.github.io/docs/resources/
+# https://github.com/AnirudhG07/awesome-yazi
+
+prepend_previewers = [
+  { name = "*.csv", run = "rich-preview" }, # for csv files
+  # { name = "*.md", run = "rich-preview" },  # for markdown (.md) files
+  { name = "*.md", run = "glow" },
+  # { name = "*.md", run = "mdcat" },
+  { name = "*.rst", run = "rich-preview" },       # for restructured text (.rst) files
+  { name = "*.ipynb", run = "rich-preview" },     # for jupyter notebooks (.ipynb)
+  { name = "*.json", run = "rich-preview" },      # for json (.json) files
+  { name = "*.lang_type", run = "rich-preview" }, # for particular language files eg. .py, .go., .lua, etc.
+
+  { mime = "audio/*", run = "exifaudio" },
+  { mime = "video/*", run = "video-ffmpeg" },
+  { mime = "application/x-bittorrent", run = "torrent-preview" },
+
+  { name = "*.epub", run = "epub" },
+]
+
+prepend_preloaders = [{ name = "*.epub", run = "epub" }]
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*/"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id   = "mime"
+if   = "!mime"
+name = "*"
+run  = "mime-ext"
+prio = "high"
