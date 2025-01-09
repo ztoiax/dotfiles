@@ -65,7 +65,7 @@ prepend_keymap = [
 
   # Find
   { on = [ "f","a" ], run  = "plugin fg", desc = "find file by content (fuzzy match)" },
-  { on = [ "f","A" ], run  = "plugin fg --args='rg'", desc = "find file by content (ripgrep match)" },
+  { on = [ "f","A" ], run  = "plugin fg --args='rga'", desc = "find file by content (ripgrep-all)" },
   { on = [ "f","f" ], run  = "plugin fg --args='fzf'", desc = "find file by filename" },
 
 	# Sorting
@@ -88,6 +88,10 @@ prepend_keymap = [
 	{ on = [ "y", "d" ], run = "copy dirname",          desc = "Copy the directory path" },
 	{ on = [ "y", "n" ], run = "copy filename",         desc = "Copy the filename" },
 	{ on = [ "y", "m" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
+
+  # glow.yazi
+  { on = ["<A-j>"], run = "seek 5" },
+  { on = ["<A-k>"], run = "seek -5" },
 ]
 
 
