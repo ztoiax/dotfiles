@@ -58,6 +58,8 @@ size = 20
 
   [font.normal]
   family = "DroidSansMono Nerd Font"
+  # family = "Cascadia Code"
+  # family = "Source Code Pro"
 
 [[keyboard.bindings]]
 action = "Paste"
