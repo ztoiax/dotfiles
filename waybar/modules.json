@@ -75,9 +75,7 @@
   // Cliphist
   "custom/cliphist": {
     "format": "",
-    "on-click": "sleep 0.1 && ~/.config/ml4w/scripts/cliphist.sh",
-    "on-click-right": "sleep 0.1 && ~/.config/ml4w/scripts/cliphist.sh d",
-    "on-click-middle": "sleep 0.1 && ~/.config/ml4w/scripts/cliphist.sh w",
+    "on-click": "cliphist list | rofi -dmenu | cliphist decode | wl-copy",
     "tooltip-format": "Clipboard Manager"
   },
 
@@ -154,7 +152,7 @@
   "custom/hyprshade": {
     "format": "",
     "tooltip-format": "Toggle Screen Shader",
-    "on-click": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh",
+    "on-click": "hyprshade toggle",
     "on-click-right": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh rofi"
   },
 
@@ -278,7 +276,7 @@
   // Network
   "network": {
     "format": " {ifname}",
-    "format-wifi": "   {signalStrength}%",
+    "format-wifi": "  ",
     "format-ethernet": "  {ifname}",
     "format-disconnected": "Disconnected",
     "tooltip-format": " {ifname} via {gwaddri}",

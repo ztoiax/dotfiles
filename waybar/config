@@ -41,18 +41,18 @@
 
     // Modules Right
     "modules-right": [
-        "custom/updates",
+        // "custom/updates",
         "pulseaudio",
         "backlight",
         "bluetooth",
         "network",
         "battery",
-        "group/hardware",
-        "group/tools",
+        // "group/hardware",
+        // "group/tools",
         "tray",
         "custom/wallpaper",
+        "custom/hyprshade",
         "clock",
         "custom/exit",
-        "custom/ml4w-welcome"
     ],
 }

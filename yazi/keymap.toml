@@ -38,7 +38,7 @@ prepend_keymap = [
   { on = [ "<Space>" ], run = "plugin bookmarks --args=jump", desc = "Jump to a bookmark" },
   { on = [ "b", "d" ], run = "plugin bookmarks --args=delete", desc = "Delete a bookmark" },
   { on = [ "b", "D" ], run = "plugin bookmarks --args=delete_all", desc = "Delete all bookmarks" },
-  { on   = [ ".", "s" ], run  = "plugin what-size", desc = "Calc size of selection or cwd" },
+  { on   = [ "d", "u" ], run  = "plugin what-size", desc = "Calc size of selection or cwd" },
   { on   = [ "c", "p" ], run  = "plugin command", desc = "Yazi command prompt" },
 
 	# Operation
@@ -51,6 +51,7 @@ prepend_keymap = [
 	{ on = [ "d", "D" ], run = "remove --permanently",        desc = "Permanently delete selected files" },
 	{ on = "A",         run = "create",                      desc = "Create a file (ends with / for directories)" },
 	{ on = "a",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
+
   { on = [ "c", "m" ], run  = "plugin chmod", desc = "Chmod on selected files" },
   { on  = "yc", run = [
     '''
@@ -67,10 +68,12 @@ prepend_keymap = [
   { on = [ "f","a" ], run  = "plugin fg", desc = "find file by content (fuzzy match)" },
   { on = [ "f","A" ], run  = "plugin fg --args='rga'", desc = "find file by content (ripgrep-all)" },
   { on = [ "f","f" ], run  = "plugin fg --args='fzf'", desc = "find file by filename" },
+	{ on = [ "f","z" ], run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
+	{ on = [ "f","Z" ], run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 
 	# Sorting
-	{ on = [ "o", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
-	{ on = [ "o", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
+	{ on = [ "o", "M" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
+	{ on = [ "o", "m" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
 	{ on = [ "o", "b" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by birth time" },
 	{ on = [ "o", "B" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort by birth time (reverse)" },
 	{ on = [ "o", "e" ], run = "sort extension --reverse=no",                   desc = "Sort by extension" },
@@ -146,6 +149,9 @@ keymap = [
 	{ on = "v", run = "visual_mode",         desc = "Enter visual mode (selection mode)" },
 	{ on = "V", run = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
 
+  # Spotting
+  { on = "<Tab>", run = "spot", desc = "Spot hovered file" },
+
 	# Operation
 	{ on = "o",         run = "open",                        desc = "Open selected files" },
 	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
@@ -165,13 +171,11 @@ keymap = [
 	{ on = "a",         run = "create",                      desc = "Create a file (ends with / for directories)" },
 	{ on = ";",         run = "shell --interactive",         desc = "Run a shell command" },
 	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
-	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
+	{ on = [ "z", "z" ], run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
 	# { on = "s",         run = "search fd",                   desc = "Search files by name via fd" },
   { on = "s",         run  = "plugin smart-filter", desc = "Smart filter" },
 	{ on = "S",         run = "search rg",                   desc = "Search files by content via ripgrep" },
 	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
-	{ on = "z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
-	{ on = "Z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 
 	# Linemode
 	{ on = [ "M", "s" ], run = "linemode size",        desc = "Linemode: size" },
