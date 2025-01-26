@@ -150,7 +150,7 @@ keymap = [
 	{ on = "V", run = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
 
   # Spotting
-  { on = "<Tab>", run = "spot", desc = "Spot hovered file" },
+  { on = "<Tab>", run = "spot", desc = "查看文件详细信息" },
 
 	# Operation
 	{ on = "o",         run = "open",                        desc = "Open selected files" },

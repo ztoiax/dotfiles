@@ -1,10 +1,3 @@
-//  __  __           _       _
-// |  \/  | ___   __| |_   _| | ___  ___
-// | |\/| |/ _ \ / _` | | | | |/ _ \/ __|
-// | |  | | (_) | (_| | |_| | |  __/\__ \
-// |_|  |_|\___/ \__,_|\__,_|_|\___||___/
-//
-//
 {
   // Workspaces
   "hyprland/workspaces": {
@@ -53,25 +46,6 @@
     "separate-outputs": true
   },
 
-  // ML4W Welcome App
-  "custom/ml4w-welcome": {
-    "on-click": "ags -t sidebar",
-    "on-click-right": "sleep 0.1 && ~/.config/ml4w/apps/ML4W_Welcome-x86_64.AppImage",
-    "format": " ",
-    "tooltip-format": "Open Sidebar"
-  },
-
-  // Empty
-  "custom/empty": {
-    "format": ""
-  },
-
-  // Empty
-  "custom/tools": {
-    "format": "",
-    "tooltip-format": "Tools"
-  },
-
   // Cliphist
   "custom/cliphist": {
     "format": "",
@@ -79,37 +53,12 @@
     "tooltip-format": "Clipboard Manager"
   },
 
-  // Updates Count
-  "custom/updates": {
-    "format": "  {}",
-    "escape": true,
-    "return-type": "json",
-    "exec": "~/.config/ml4w/scripts/updates.sh",
-    "restart-interval": 1800,
-    "on-click": "$(cat ~/.config/ml4w/settings/terminal.sh) --class dotfiles-floating -e ~/.config/ml4w/scripts/installupdates.sh",
-    "on-click-right": "~/.config/ml4w/settings/software.sh"
-  },
-
   // Wallpaper
   "custom/wallpaper": {
     "format": "",
-    "on-click": "waypaper",
-    "on-click-right": "~/.config/hypr/scripts/wallpaper-effects.sh",
-    "tooltip-format": "Left: Select a wallpaper\nRight: Select wallpaper effect"
-  },
-
-  // Waybar Themes
-  "custom/waybarthemes": {
-    "format": "",
-    "on-click": "~/.config/waybar/themeswitcher.sh",
-    "tooltip-format": "Select a waybar theme"
-  },
-
-  // Settings
-  "custom/settings": {
-    "format": "",
-    "on-click": "~/.config/ml4w/apps/ML4W_Dotfiles_Settings-x86_64.AppImage",
-    "tooltip-format": "ML4W Dotfiles Settings"
+    "on-click": "wpaperctl next",
+    "on-click-right": "wpaperctl previous",
+    "tooltip-format": "Left: next wallpaper\nRight: previous wallpaper"
   },
 
   // Keybindings
@@ -117,13 +66,6 @@
     "format": "",
     "on-click": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip": false
-  },
-
-  // ChatGPT Launcher
-  "custom/chatgpt": {
-    "format": " ",
-    "on-click": "~/.config/ml4w/settings/ai.sh",
-    "tooltip-format": "AI Support"
   },
 
   // Calculator
@@ -137,7 +79,6 @@
   "custom/appmenu": {
     "format": "",
     "on-click": "rofi -show drun -replace",
-    "on-click-right": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
   },
 
@@ -150,34 +91,11 @@
 
   // Hyprshade
   "custom/hyprshade": {
-    "format": "",
+    "format": " 󱈉",
     "tooltip-format": "Toggle Screen Shader",
-    "on-click": "hyprshade toggle",
-    "on-click-right": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh rofi"
+    "on-click": "hyprshade toggle"
   },
 
-  // Hypridle inhibitor
-  "custom/hypridle": {
-    "format": "",
-    "return-type": "json",
-    "escape": true,
-    "exec-on-event": true,
-    "interval": 60,
-    "exec": "~/.config/hypr/scripts/hypridle.sh status",
-    "on-click": "~/.config/hypr/scripts/hypridle.sh toggle",
-    "on-click-right": "hyprlock"
-  },
-
-  // Keyboard State
-  "keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": "{name} {icon}",
-    "format-icons": {
-      "locked": "",
-      "unlocked": ""
-    }
-  },
 
   // System tray
   "tray": {
@@ -249,15 +167,6 @@
     ]
   },
 
-  // Group Links
-  "group/links": {
-    "orientation": "horizontal",
-    "modules": [
-      "custom/chatgpt",
-      "custom/empty"
-    ]
-  },
-
   // Group Settings
   "group/settings": {
     "orientation": "inherit",
@@ -284,7 +193,7 @@
     "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
-    "on-click": "iwgtk",
+    "on-click": "iwgtk"
   },
 
   // Battery
@@ -321,7 +230,8 @@
       "car": " ",
       "default": ["", "", ""]
     },
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
+    "on-click-right": "easyeffects"
   },
 
   // Bluetooth
@@ -361,6 +271,6 @@
       "",
       ""
     ],
-    "scroll-step": 1,
+    "scroll-step": 1
   }
 }

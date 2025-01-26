@@ -1,0 +1,7 @@
+[default]
+duration = "60m"
+mode = "center"
+sorting = "random"
+
+[any]
+path = "/home/tz/Pictures/wallpapers"

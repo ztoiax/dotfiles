@@ -1,0 +1,25 @@
+# https://neovide.dev/config-file.html
+
+backtraces_path = "/tmp/neovide_backtraces.log" # see below for the default platform specific location
+neovim-bin = "/usr/bin/nvim" # in reality found dynamically on $PATH if unset
+
+[font]
+size = 20
+hinting = "full"
+edging = "antialias"
+
+[[font.normal]]
+family = "DroidSansMono Nerd Font"
+style = "Normal"
+
+[[font.bold]]
+family = "DroidSansMono Nerd Font"
+style = "Bold"
+
+[[font.Italic]]
+family = "DroidSansMono Nerd Font"
+style = "Italic"
+
+[[font.bold_italic]]
+family = "DroidSansMono Nerd Font"
+style = "Bold Italic"

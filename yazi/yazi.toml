@@ -20,8 +20,10 @@ play = [
 ]
 # 以阻塞方式打开。设置后，yazi将隐藏到一个副屏幕，并显示在主屏幕上的程序，直到它退出。在此期间，它可以接收I/O信号，这对交互式程序很有用。
 edit = [
-  { run = '$EDITOR "$@"', block = true, desc = "nvim", for = "unix" },
+  { run = 'nvim --server /tmp/nvim.socket --remote "$@"', block = true, desc = "current nvim", for = "unix" },
+  { run = '$EDITOR "$@"', block = true, desc = "new nvim", for = "unix" },
   { run = 'code "$@"', orphan = true, desc = "vscode", for = "unix" },
+  { run = 'helix "$@"', orphan = true, desc = "helix", for = "unix" },
 ]
 open = [
   { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
@@ -81,13 +83,12 @@ append_rules = []
 
 prepend_previewers = [
   { name = "*/", run = "eza-preview" },
-  { name = "*.csv", run = "rich-preview" }, # for csv files
-  # { name = "*.md", run = "rich-preview" },  # for markdown (.md) files
-  { name = "*.md", run = "glow" },
-  # { name = "*.md", run = "mdcat" },
+  { name = "*.csv", run = "bat" }, # for csv files
+  # { name = "*.md", run = "glow" },  # for markdown (.md) files
+  { name = "*.md", run = "bat" },
   { name = "*.rst", run = "rich-preview" },       # for restructured text (.rst) files
   { name = "*.ipynb", run = "rich-preview" },     # for jupyter notebooks (.ipynb)
-  { name = "*.json", run = "rich-preview" },      # for json (.json) files
+  { name = "*.json", run = "bat" },      # for json (.json) files
   { name = "*.lang_type", run = "rich-preview" }, # for particular language files eg. .py, .go., .lua, etc.
 
   { mime = "audio/*", run = "exifaudio" },
@@ -99,6 +100,15 @@ prepend_previewers = [
 
 prepend_preloaders = [
   { name = "*.epub", run = "epub" },
+]
+
+previewers = [
+	{ mime = "*",                      run = "bat" },
+	{ mime = "text/*",                 run = "bat" },
+	{ mime = "*/xml",                  run = "bat" },
+	{ mime = "*/cs",                   run = "bat" },
+	{ mime = "*/javascript",           run = "bat" },
+	{ mime = "*/x-wine-extension-ini", run = "bat" },
 ]
 
 [[plugin.prepend_fetchers]]
