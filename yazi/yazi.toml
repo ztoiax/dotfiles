@@ -20,8 +20,8 @@ play = [
 ]
 # 以阻塞方式打开。设置后，yazi将隐藏到一个副屏幕，并显示在主屏幕上的程序，直到它退出。在此期间，它可以接收I/O信号，这对交互式程序很有用。
 edit = [
-  { run = 'nvim --server /tmp/nvim.socket --remote "$@"', block = true, desc = "current nvim", for = "unix" },
   { run = '$EDITOR "$@"', block = true, desc = "new nvim", for = "unix" },
+  { run = 'nvim --server /tmp/nvim.socket --remote "$@"', block = true, desc = "current nvim", for = "unix" },
   { run = 'code "$@"', orphan = true, desc = "vscode", for = "unix" },
   { run = 'helix "$@"', orphan = true, desc = "helix", for = "unix" },
 ]
