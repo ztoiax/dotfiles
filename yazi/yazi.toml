@@ -23,12 +23,15 @@ edit = [
   { run = '$EDITOR "$@"', block = true, desc = "new nvim", for = "unix" },
   { run = 'nvim --server /tmp/nvim.socket --remote "$@"', block = true, desc = "current nvim", for = "unix" },
   { run = 'code "$@"', orphan = true, desc = "vscode", for = "unix" },
+  { run = 'zeditor "$@"', orphan = true, desc = "zeditor", for = "unix" },
   { run = 'helix "$@"', orphan = true, desc = "helix", for = "unix" },
 ]
 open = [
   { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
   { run = 'open "$@"', desc = "Open", for = "macos" },
   { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+  { run = 'nvim --server /tmp/nvim.socket --remote "$@"', block = true, desc = "current nvim", for = "unix" },
+  { run = '$EDITOR "$@"', block = true, desc = "new nvim", for = "unix" },
 ]
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
@@ -82,6 +85,72 @@ append_rules = []
 # https://github.com/AnirudhG07/awesome-yazi
 
 prepend_previewers = [
+]
+
+prepend_preloaders = [
+]
+
+fetchers = [
+	# Mimetype
+	{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
+]
+spotters = [
+	{ name = "*/", run = "folder" },
+	# Code
+	{ mime = "text/*", run = "code" },
+	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+	# Fallback
+	{ name = "*", run = "file" },
+]
+preloaders = [
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+	# PDF
+	{ mime = "application/pdf", run = "pdf" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/ms-opentype", run = "font" },
+]
+
+previewers = [
+	{ mime = "text/*",                 run = "bat" },
+	{ mime = "*/xml",                  run = "bat" },
+	{ mime = "*/cs",                   run = "bat" },
+	{ mime = "*/javascript",           run = "bat" },
+	{ mime = "*/x-wine-extension-ini", run = "bat" },
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+  # PDF
+	{ mime = "application/pdf", run = "pdf" },
+	# Archive
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
+	{ mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
+	{ name = "*.{AppImage,appimage}", run = "archive" },
+	# Virtual Disk / Disk Image
+	{ mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
+	{ mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
+	{ name = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/ms-opentype", run = "font" },
+	# Empty file
+	{ mime = "inode/empty", run = "empty" },
+	# 二进制文件
+	{ mime = "application/x-executable", run = "readelf -WCa" },
+	{ mime = "application/x-pie-executable", run = "readelf -WCa" },
+	{ mime = "application/x-sharedlib", run = "readelf -WCa" },
+
   { name = "*/", run = "eza-preview" },
   { name = "*.csv", run = "bat" }, # for csv files
   # { name = "*.md", run = "glow" },  # for markdown (.md) files
@@ -96,19 +165,9 @@ prepend_previewers = [
   { mime = "application/x-bittorrent", run = "torrent-preview" },
 
   { name = "*.epub", run = "epub" },
-]
 
-prepend_preloaders = [
-  { name = "*.epub", run = "epub" },
-]
-
-previewers = [
-	{ mime = "*",                      run = "bat" },
-	{ mime = "text/*",                 run = "bat" },
-	{ mime = "*/xml",                  run = "bat" },
-	{ mime = "*/cs",                   run = "bat" },
-	{ mime = "*/javascript",           run = "bat" },
-	{ mime = "*/x-wine-extension-ini", run = "bat" },
+	# file
+	{ name = "*", run = "bat" },
 ]
 
 [[plugin.prepend_fetchers]]
