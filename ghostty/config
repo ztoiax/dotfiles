@@ -1,0 +1,71 @@
+# https://github.com/fearlessgeekmedia/Awesome-Ghostty
+# 查看别人分享的ghostty配置 https://ghostty.town/
+
+##### ui #####
+
+# ghostty +list-fonts 查看支持的字体
+# font-family = "JetBrains Mono"
+# font-family = "Fira Code"
+font-family = "DroidSansMono Nerd Font"
+font-size = 20
+
+# 主题。ghostty +list-themes命令查看支持的主题
+# theme = light:OneHalfLight,dark:OneHalfDark
+# theme = light:GruvboxLight,dark:GruvboxDark
+theme = light:nord,dark:nord-wave
+
+# 透明度
+background-opacity = 0.8
+
+# 输入时隐藏光标
+mouse-hide-while-typing = true
+
+# 全屏启动
+fullscreen= true
+# 最大化启动
+maximize = true
+
+focus-follows-mouse = true 
+
+##### feautres #####
+
+# 终端运行的程序是否可以读取、写入剪切板。
+clipboard-read = allow
+clipboard-write = allow
+# 修建剪切板尾部的空格
+clipboard-trim-trailing-spaces = true
+
+# 退出时是否显示确认对话框
+confirm-close-surface = false
+
+# 点击url是否打开浏览器
+link-url = true
+
+##### Keybindings #####
+
+# ghostty ghostty +list-keybinds 查看默认的快捷键
+# ghostty +list-actions 查看支持的快捷键命令
+
+keybind = performable:alt+r=reload_config
+
+keybind = performable:alt+c=copy_to_clipboard
+keybind = performable:alt+v=paste_from_clipboard
+
+keybind = performable:alt+k=scroll_page_up
+keybind = performable:alt+j=scroll_page_down
+
+keybind = performable:alt+shift+a=select_all
+
+keybind = performable:ctrl+t=new_tab
+
+keybind = performable:ctrl+shift+j=new_split:down
+keybind = performable:ctrl+shift+k=new_split:up
+keybind = performable:ctrl+shift+l=new_split:right
+keybind = performable:ctrl+shift+h=new_split:left
+
+keybind = performable:super+q=quit
+
+# 是否开启顶部栏
+keybind = performable:alt+shift+b=toggle_window_decorations
+# 开启ghostty的任务管理器
+keybind = performable:alt+shift+i=inspector:toggle

@@ -35,6 +35,7 @@ prepend_keymap = [
   { on = [ ",", "s" ], run = "plugin file-actions --args='around '", desc= "Perform actions on selected files" },
 
   { on = [ "m" ], run = "plugin bookmarks --args=save", desc = "Save current position as a bookmark" },
+  { on  = "M", run = "plugin mount" },
   { on = [ "<Space>" ], run = "plugin bookmarks --args=jump", desc = "Jump to a bookmark" },
   { on = [ "b", "d" ], run = "plugin bookmarks --args=delete", desc = "Delete a bookmark" },
   { on = [ "b", "D" ], run = "plugin bookmarks --args=delete_all", desc = "Delete all bookmarks" },
@@ -52,6 +53,7 @@ prepend_keymap = [
 	{ on = "A",         run = "create",                      desc = "Create a file (ends with / for directories)" },
 	{ on = "a",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
 
+  { on  = [ "c", "d" ], run  = "plugin diff", desc = "Diff the selected with the hovered file" },
   { on = [ "c", "m" ], run  = "plugin chmod", desc = "Chmod on selected files" },
   { on  = "yc", run = [
     '''
@@ -65,11 +67,10 @@ prepend_keymap = [
   # { on = "p", run  = "plugin smart-paste", desc = "粘贴文件，而无需进入目录" },
 
   # Find
-  { on = [ "f","a" ], run  = "plugin fg", desc = "find file by content (fuzzy match)" },
-  { on = [ "f","A" ], run  = "plugin fg --args='rga'", desc = "find file by content (ripgrep-all)" },
-  { on = [ "f","f" ], run  = "plugin fg --args='fzf'", desc = "find file by filename" },
-	{ on = [ "f","z" ], run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
-	{ on = [ "f","Z" ], run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+  { on = [ "f","a" ], run  = "plugin fr rg", desc = "find file by content (fuzzy match)" },
+  { on = [ "f","A" ], run  = "plugin fr rga", desc = "find file by content (ripgrep-all)" },
+	{ on = [ "f","f" ], run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+	{ on = [ "z" ], run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
 
 	# Sorting
 	{ on = [ "o", "M" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
@@ -123,8 +124,8 @@ keymap = [
 	{ on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
 	{ on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
 
-	{ on = [ "g", "g" ], run = "arrow -99999999", desc = "Move cursor to the top" },
-	{ on = "G",          run = "arrow 99999999",  desc = "Move cursor to the bottom" },
+	{ on = [ "g", "g" ], run = "arrow top", desc = "Move cursor to the top" },
+	{ on = "G",          run = "arrow bot",  desc = "Move cursor to the bottom" },
 
 	# Navigation
 	{ on = "h", run = "leave", desc = "Go back to the parent directory" },
@@ -142,7 +143,7 @@ keymap = [
 
 	# Toggle
 	{ on = "i", run = [ "toggle", "arrow 1" ], desc = "Toggle the current selection state" },
-	{ on = "<C-a>",   run = "toggle_all on",         desc = "Select all files" },
+	{ on = "<C-a>",   run = "toggle_all --state=on", desc = "Select all files" },
 	{ on = "<C-r>",   run = "toggle_all",            desc = "Invert selection of all files" },
 
 	# Visual mode
@@ -159,7 +160,7 @@ keymap = [
 	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "y",         run = "yank",                        desc = "Yank selected files (copy)" },
 	{ on = "x",         run = "yank --cut",                  desc = "Yank selected files (cut)" },
-	{ on = "p",         run = "paste",                       desc = "Paste yanked files" },
+	{ on = [ "p", "p" ], run = "paste",                       desc = "Paste yanked files" },
 	{ on = "P",         run = "paste --force",               desc = "Paste yanked files (overwrite if the destination exists)" },
 	{ on = "-",         run = "link",                        desc = "Symlink the absolute path of yanked files" },
 	{ on = "_",         run = "link --relative",             desc = "Symlink the relative path of yanked files" },
@@ -171,10 +172,10 @@ keymap = [
 	{ on = "a",         run = "create",                      desc = "Create a file (ends with / for directories)" },
 	{ on = ";",         run = "shell --interactive",         desc = "Run a shell command" },
 	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
-	{ on = [ "z", "z" ], run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
-	# { on = "s",         run = "search fd",                   desc = "Search files by name via fd" },
+	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
   { on = "s",         run  = "plugin smart-filter", desc = "Smart filter" },
-	{ on = "S",         run = "search rg",                   desc = "Search files by content via ripgrep" },
+	# { on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
+	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
 	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
 
 	# Linemode
@@ -257,14 +258,40 @@ keymap = [
 	{ on = "<C-c>", run = "close", desc = "Close task manager" },
 	{ on = "w",     run = "close", desc = "Close task manager" },
 
-	{ on = "k", run = "plugin arrow --args=-1", desc = "Move cursor up" },
-	{ on = "j", run = "plugin arrow --args=1",  desc = "Move cursor down" },
+	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
+	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
 
 	{ on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
 	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
 
 	{ on = "<Enter>", run = "inspect", desc = "Inspect the task" },
 	{ on = "x",       run = "cancel",  desc = "Cancel the task" },
+
+	# Help
+	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "<F1>", run = "help", desc = "Open help" },
+]
+
+[spot]
+
+keymap = [
+	{ on = "<Esc>", run = "close", desc = "Close the spot" },
+	{ on = "<C-[>", run = "close", desc = "Close the spot" },
+	{ on = "<C-c>", run = "close", desc = "Close the spot" },
+	{ on = "<Tab>", run = "close", desc = "Close the spot" },
+
+	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
+	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
+	{ on = "h", run = "swipe -1", desc = "Swipe to the next file" },
+	{ on = "l", run = "swipe 1",  desc = "Swipe to the previous file" },
+
+	{ on = "<Up>",    run = "arrow -1", desc = "Move cursor up" },
+	{ on = "<Down>",  run = "arrow 1",  desc = "Move cursor down" },
+	{ on = "<Left>",  run = "swipe -1", desc = "Swipe to the next file" },
+	{ on = "<Right>", run = "swipe 1",  desc = "Swipe to the previous file" },
+
+	# Copy
+	{ on = [ "c", "c" ], run = "copy cell", desc = "Copy selected cell" },
 
 	# Help
 	{ on = "~",    run = "help", desc = "Open help" },

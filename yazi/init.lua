@@ -43,10 +43,45 @@ require("full-border"):setup {
 	type = ui.Border.ROUNDED,
 }
 
--- 异步显示当前目录的文件大小
-require("current-size"):setup{
-    folder_size_ignore = {"/home/user","/"},
-}
-
 -- 修改压缩文件
 require("archivemount"):setup()
+
+-- fr插件
+require("fr"):setup({
+	fzf = [[--info-command='echo -e "$FZF_INFO 💛"' --no-scrollbar]],
+	bat = "--style 'header,grid'",
+	rg = {
+		"--no-heading",
+		"--with-filename",
+		"--line-number",
+		"--column",
+		"--smart-case",
+		"--trim",
+		"--max-depth",
+		"3",
+		"--no-ignore",
+	},
+	rga = {
+		"--follow",
+		"--hidden",
+		"--no-ignore",
+		"--glob",
+		"'!.git'",
+		"--glob",
+		"!'.venv'",
+		"--glob",
+		"'!node_modules'",
+		"--glob",
+		"'!.history'",
+		"--glob",
+		"'!.Rproj.user'",
+		"--glob",
+		"'!.ipynb_checkpoints'",
+	},
+	rga_preview = {
+		"--colors 'line:fg:red'"
+			.. " --colors 'match:fg:blue'"
+			.. " --colors 'match:bg:black'"
+			.. " --colors 'match:style:nobold'",
+	},
+})
