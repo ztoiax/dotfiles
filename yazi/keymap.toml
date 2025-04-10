@@ -3,8 +3,8 @@
 # 按一次 Esc 关闭输入
 [[input.prepend_keymap]]
 on   = "<Esc>"
-run  = "close"
-desc = "Cancel input"
+run  = [ "close", "mgr:escape --filter" ]
+desc = "Close input and cancel the filter"
 
 [manager]
 prepend_keymap = [
@@ -175,7 +175,8 @@ keymap = [
 	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
   { on = "s",         run  = "plugin smart-filter", desc = "Smart filter" },
 	# { on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
-	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
+	# { on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
+	{ on = "S",         run = "search --via=rga",             desc = "Search files by content via ripgrep-all" },
 	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
 
 	# Linemode
@@ -248,6 +249,9 @@ keymap = [
 	# Help
 	{ on = "~",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
+
+  # plugin sxiv。要安装sxiv
+  { on = ["c", "i"], run  = "plugin sxiv", desc = "Preview images in sxiv" },
 ]
 
 [tasks]

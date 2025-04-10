@@ -46,6 +46,9 @@ require("full-border"):setup {
 -- 修改压缩文件
 require("archivemount"):setup()
 
+-- duckdb
+require("duckdb"):setup()
+
 -- fr插件
 require("fr"):setup({
 	fzf = [[--info-command='echo -e "$FZF_INFO 💛"' --no-scrollbar]],

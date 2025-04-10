@@ -39,6 +39,7 @@ border_style  = { fg = "#665c54" }
 separator_open  = ""
 separator_close = ""
 separator_style = { fg = "#3c3836", bg = "#3c3836" }
+overall = { fg = "#cad3f5", bg = "#181926" }
 
 # Mode
 mode_normal = { fg = "#282828", bg = "#A89984", bold = true }

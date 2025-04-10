@@ -12,7 +12,7 @@ font-size = 20
 # 主题。ghostty +list-themes命令查看支持的主题
 # theme = light:OneHalfLight,dark:OneHalfDark
 # theme = light:GruvboxLight,dark:GruvboxDark
-theme = light:nord,dark:nord-wave
+# theme = light:Builtin Solarized Light,dark:Builtin Solarized Dark
 
 # 透明度
 background-opacity = 0.8
