@@ -1,0 +1,11 @@
+[Unit]
+Description=Aria2c Download Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/aria2c --conf-path=/home/tz/.config/aria2/aria2.conf
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

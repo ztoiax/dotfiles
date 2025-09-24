@@ -1,6 +1,6 @@
 # 默认的yazi.toml https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/yazi-default.toml
 
-[manager]
+[mgr]
 # 父级宽度为1/8，当前宽度为3/8，预览宽度为4/8
 ratio          = [ 1, 4, 3 ]
 # ratio            = [1, 2, 5]
@@ -52,19 +52,21 @@ open = [
   { run = '$EDITOR "$@"', block = true,                                 desc = "new nvim", for = "unix" },
 ]
 reveal = [
-  { run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
-  { run = 'open -R "$1"',                         desc = "Reveal", for = "macos" },
+  { run = 'xdg-open "$(dirname "$1")"', orphan = true, desc = "Reveal", for = "linux" },
+  { run = 'open -R "$1"', orphan = true,          desc = "Reveal", for = "macos" },
   { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
 	{ run = 'termux-open "$(dirname "$1")"',        desc = "Reveal", for = "android" },
-  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true,      desc = "Show EXIF", for = "unix" },
+  { run = '''exiftool "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true,      desc = "Show EXIF", for = "unix" },
 ]
 open_image = [
+  { run = 'nsxiv "$@"', orphan = true, desc = "nsxiv" },
   { run = 'swayimg --fullscreen "$@"', orphan = true, desc = "swayimg" },
   { run = 'nomacs --fullscreen "$@"', orphan = true, desc = "nomacs" },
   { run = 'qimgv "$@"', orphan = true, desc = "qimgv" },
 ]
 extract = [
-  { run = 'engrampa "$@"', orphan = true, desc = "open with engrampa", for = "unix" },
+  # { run = 'engrampa "$@"', orphan = true, desc = "open with engrampa", for = "unix" },
+  { run = 'peazip "$@"', orphan = true, desc = "open with peazip", for = "unix" },
   { run = 'ya pub extract --list "$@"', desc = "Extract here with ya pub extract", for = "unix" },
   { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
   { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
@@ -78,12 +80,19 @@ pdf = [
 ]
 
 play = [
-
-  { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
   { run = 'mpv --force-window %*', orphan = true, for = "windows" },
-  { run = 'vlc --fullscreen "$@"', orphan = true, desc = "vlc", for = "unix" },
+
+  # { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+  { run = 'mpv --force-window "$@" & disown', orphan = true, desc = "mpv (disown)", for = "unix" },
+  # { run = 'vlc --fullscreen "$@"', orphan = true, desc = "vlc", for = "unix" },
+  { run = 'vlc --fullscreen "$@" & disown', orphan = true, desc = "vlc(disown)", for = "unix" },
+
   { run = 'xdg-open "$@"', orphan = true, desc = "Open with web" },
-  { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+  # { run = '''mediainfo "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true, desc = "Show media info", for = "unix" },
+  { run = '''mediainfo "$1"; tput setaf 1; echo "Press enter to exit"; tput sgr0; read _''', block = true, desc = "Show media info", for = "unix" },
+  { run = '''ffprobe "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true, desc = "Show media ffprobe", for = "unix" },
+  { run = 'mediainfo-gui "$1"', orphan = true, desc = "Show media info gui", for = "unix" },
+  { run = 'winff-qt6 "$1"', orphan = true, desc = "Show media ffprobe gui", for = "unix" },
 ]
 
 [open]
@@ -101,7 +110,7 @@ rules = [
   ] },
   # Image
   { mime = "image/*", use = [
-    "open",
+    "open_image",
     "reveal",
   ] },
   # Media
@@ -253,7 +262,11 @@ previewers = [
 
 	# Fallback
   # { name = "*", run = "file" },
-  { name = "*", run = "code" },
+  # { name = "*", run = "code" },
+
+  # 需要安装enhance-piper插件
+  { name = "*", run  = 'enhance-piper -- echo "$1"' },
+
 ]
 
 [[plugin.prepend_fetchers]]
