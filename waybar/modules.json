@@ -79,7 +79,7 @@
   "custom/appmenu": {
     "format": "",
     // "on-click": "rofi -show drun -replace",
-    "on-click": "vicinae",
+    "on-click": "vicinae toggle",
     "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
   },
 

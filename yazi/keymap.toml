@@ -173,7 +173,7 @@ keymap = [
 	{ on = "D",         run = "remove --permanently",        desc = "Permanently delete selected files" },
 	{ on = "a",         run = "create",                      desc = "Create a file (ends with / for directories)" },
 	{ on = ";",         run = "shell --interactive",         desc = "Run a shell command" },
-	# { on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
+	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
 	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
   { on = "s",         run  = "plugin smart-filter", desc = "Smart filter" },
 	# { on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },

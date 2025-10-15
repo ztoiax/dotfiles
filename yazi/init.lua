@@ -88,3 +88,11 @@ require("fr"):setup({
 			.. " --colors 'match:style:nobold'",
 	},
 })
+
+-- spot插件。AminurAlam/yazi-plugins:spot
+require('spot'):setup {
+  height = 20,
+  width = 60,
+  render_metadata = true,
+  render_plugins = false,
+}

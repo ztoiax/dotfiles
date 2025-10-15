@@ -59,9 +59,9 @@ reveal = [
   { run = '''exiftool "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true,      desc = "Show EXIF", for = "unix" },
 ]
 open_image = [
+  { run = 'nomacs --fullscreen "$@"', orphan = true, desc = "nomacs" },
   { run = 'nsxiv "$@"', orphan = true, desc = "nsxiv" },
   { run = 'swayimg --fullscreen "$@"', orphan = true, desc = "swayimg" },
-  { run = 'nomacs --fullscreen "$@"', orphan = true, desc = "nomacs" },
   { run = 'qimgv "$@"', orphan = true, desc = "qimgv" },
 ]
 extract = [
@@ -190,8 +190,10 @@ prepend_preloaders = [
 
 fetchers = [
   # Mimetype
-  { id = "mime", name = "*", run = "mime", prio = "high" },
+  { id = "mime", if = "!mime", name = "*", run = "mime-ext", prio = "high" },
+  { id = "git", name = "*", run = "git" },
 ]
+
 spotters = [
   { name = "*/", run = "folder" },
   # Code
@@ -206,6 +208,12 @@ spotters = [
   # Fallback
   { name = "*", run = "file" },
 ]
+
+prepend_spotters = [
+  { name = "video/*", run = "spot-video" },
+  { name = "audio/*", run = "spot-audio" },
+]
+
 preloaders = [
   # Image
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
@@ -268,23 +276,6 @@ previewers = [
   { name = "*", run  = 'enhance-piper -- echo "$1"' },
 
 ]
-
-[[plugin.prepend_fetchers]]
-id = "git"
-name = "*"
-run = "git"
-
-[[plugin.prepend_fetchers]]
-id = "git"
-name = "*/"
-run = "git"
-
-[[plugin.prepend_fetchers]]
-id = "mime"
-if = "!mime"
-name = "*"
-run = "mime-ext"
-prio = "high"
 
 [input]
 cursor_blink = false

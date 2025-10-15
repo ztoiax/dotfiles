@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "d1c8baa"
+rev = "9a52857"
 hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "d1c8baa"
+rev = "9a52857"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
@@ -127,6 +127,16 @@ hash = "a20327710c3a8d37ee0972128dcb6a31"
 use = "boydaihungst/enhance-piper"
 rev = "d959a86"
 hash = "93be89f83033b3f1af07a696e8ec50a8"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot"
+rev = "41c04d1"
+hash = "75378c181ac48c31a6cc007d4814ae52"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot-audio"
+rev = "41c04d1"
+hash = "126f6b7379d4864d90b3e5b4d45f2fcc"
 
 [flavor]
 deps = []
