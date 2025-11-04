@@ -53,7 +53,7 @@
                 ),
             ),
             key: "Tab",
-            modifier: "super",
+            modifier: "alt",
             filter_by: [],
             hide_filtered: false,
         ),
