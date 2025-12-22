@@ -1,5 +1,7 @@
 # 默认的yazi.toml https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/yazi-default.toml
 
+# 插件 https://github.com/AnirudhG07/awesome-yazi
+
 [mgr]
 # 父级宽度为1/8，当前宽度为3/8，预览宽度为4/8
 ratio          = [ 1, 4, 3 ]
@@ -59,18 +61,19 @@ reveal = [
   { run = '''exiftool "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true,      desc = "Show EXIF", for = "unix" },
 ]
 open_image = [
+  { run = 'qimgv "$@"', orphan = true, desc = "qimgv" },
   { run = 'nomacs --fullscreen "$@"', orphan = true, desc = "nomacs" },
   { run = 'nsxiv "$@"', orphan = true, desc = "nsxiv" },
   { run = 'swayimg --fullscreen "$@"', orphan = true, desc = "swayimg" },
-  { run = 'qimgv "$@"', orphan = true, desc = "qimgv" },
+  { run = 'pix "$@"', orphan = true, desc = "pix" },
 ]
 extract = [
   # { run = 'engrampa "$@"', orphan = true, desc = "open with engrampa", for = "unix" },
   { run = 'peazip "$@"', orphan = true, desc = "open with peazip", for = "unix" },
+  { run = 'myx.sh "$@"', desc = "Extract here with myx.sh", for = "unix" },
+  { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
   { run = 'ya pub extract --list "$@"', desc = "Extract here with ya pub extract", for = "unix" },
   { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
-  { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
-  { run = 'myx.sh "$@"', desc = "Extract here with myx.sh", for = "unix" },
 ]
 pdf = [
   { run = 'zathura --mode fullscreen "$@"', orphan = true, desc = "zathura" },
@@ -86,6 +89,7 @@ play = [
   { run = 'mpv --force-window "$@" & disown', orphan = true, desc = "mpv (disown)", for = "unix" },
   # { run = 'vlc --fullscreen "$@"', orphan = true, desc = "vlc", for = "unix" },
   { run = 'vlc --fullscreen "$@" & disown', orphan = true, desc = "vlc(disown)", for = "unix" },
+  { run = 'ghb "$1"', orphan = true, desc = "HandBrake视频gui", for = "unix" },
 
   { run = 'xdg-open "$@"', orphan = true, desc = "Open with web" },
   # { run = '''mediainfo "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true, desc = "Show media info", for = "unix" },

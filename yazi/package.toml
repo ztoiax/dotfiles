@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "9a52857"
-hash = "63b6c222bf2103b3023389dde5e2ecfe"
+rev = "eaf6920"
+hash = "27ca02f49fd236b5cc7bf03c243859fe"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "9a52857"
+rev = "eaf6920"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
@@ -137,6 +137,21 @@ hash = "75378c181ac48c31a6cc007d4814ae52"
 use = "AminurAlam/yazi-plugins:spot-audio"
 rev = "41c04d1"
 hash = "126f6b7379d4864d90b3e5b4d45f2fcc"
+
+[[plugin.deps]]
+use = "simla33/ucp"
+rev = "96f54af"
+hash = "2011ef145f7d4aaa23cbc64c05cd6a7f"
+
+[[plugin.deps]]
+use = "KKV9/command"
+rev = "4762ecc"
+hash = "65fff40a0060fe4b1c42d49d29f770fd"
+
+[[plugin.deps]]
+use = "lmnek/pandoc"
+rev = "6230a94"
+hash = "e89631ed41c2531f848dd00e211a6853"
 
 [flavor]
 deps = []

@@ -28,7 +28,7 @@ prepend_keymap = [
   { on = "J", run = "plugin parent-arrow --args=1" },
   { on = "l", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
 	{ on = "L", run = "open --interactive", desc = "Open selected files interactively" },
-  { on = "e", run = "plugin max-preview", desc = "Maximize or restore preview" },
+  { on = "E", run = "plugin max-preview", desc = "Maximize or restore preview" },
 
 
   { on  = "<C-n>", run = ''' shell 'dragon -x -i -T "$1"' --confirm ''', desc = "Drag and drop via dragon" },
@@ -95,9 +95,19 @@ prepend_keymap = [
 	{ on = [ "y", "n" ], run = "copy filename",         desc = "Copy the filename" },
 	{ on = [ "y", "m" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
 
+  # ucp.yazi
+  # { on = "p", run = "plugin ucp paste", desc = "Paste" },
+  { on = "y", run = "plugin ucp copy", desc = "Copy" },
+
   # glow.yazi
   { on = ["<A-j>"], run = "seek 5" },
   { on = ["<A-k>"], run = "seek -5" },
+
+  # command.yazi
+  { on   = [ "c", "p" ], run  = "plugin command", desc = "Yazi command prompt" },
+
+  # pandoc.yazi
+  { on   = [ "e", "p" ], run  = "plugin pandoc", desc = "Convert with Pandoc" },
 ]
 
 
