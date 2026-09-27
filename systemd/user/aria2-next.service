@@ -1,0 +1,11 @@
+[Unit]
+Description=Aria2-next Download Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/aria2-next --conf-path=/home/tz/.config/aria2/aria2-next.conf
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

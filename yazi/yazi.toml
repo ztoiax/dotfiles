@@ -13,11 +13,12 @@ sort_sensitive = false
 sort_reverse 	 = false
 sort_dir_first = true
 sort_translit  = false
+sort_fallback  = "alphabetical"
 linemode       = "size"
 show_hidden    = true
 show_symlink   = true
 scrolloff      = 5
-mouse_events   = [ "click", "scroll" ]
+mouse_events   = [ "click", "scroll", "drag" ]
 title_format   = "Yazi: {cwd}"
 
 [preview]
@@ -39,19 +40,19 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 # 以阻塞方式打开。设置后，yazi将隐藏到一个副屏幕，并显示在主屏幕上的程序，直到它退出。在此期间，它可以接收I/O信号，这对交互式程序很有用。
 edit = [
-  { run = '$EDITOR "$@"', block = true, desc = "new nvim", for = "unix" },
-  { run = 'nvim --server /tmp/nvim.socket --remote "$@"', block = true, desc = "current nvim", for = "unix" },
-  { run = 'code "$@"', orphan = true, desc = "vscode", for = "unix" },
-  { run = 'zeditor "$@"', orphan = true, desc = "zeditor", for = "unix" },
-  { run = 'helix "$@"', orphan = true, desc = "helix", for = "unix" },
+  { run = '$EDITOR %s1', block = true, desc = "new nvim", for = "unix" },
+  { run = 'nvim --server /tmp/nvim.socket --remote $@', block = true, desc = "current nvim", for = "unix" },
+  { run = 'code %s1', orphan = true, desc = "vscode", for = "unix" },
+  { run = 'zeditor %s1', orphan = true, desc = "zeditor", for = "unix" },
+  { run = 'helix %s1', orphan = true, desc = "helix", for = "unix" },
 ]
 open = [
-  { run = 'xdg-open "$1"',                                              desc = "Open", for = "linux" },
-  { run = 'open "$@"',                                                  desc = "Open", for = "macos" },
-  { run = 'start "" "%1"', orphan = true,                               desc = "Open", for = "windows" },
-  { run = 'termux-open "$1"',                                           desc = "Open", for = "an droid" },
-  { run = 'nvim --server /tmp/nvim.socket --remote "$@"', block = true, desc = "current nvim", for = "unix" },
-  { run = '$EDITOR "$@"', block = true,                                 desc = "new nvim", for = "unix" },
+  { run = 'xdg-open %s1',                                              desc = "Open", for = "linux" },
+  { run = 'open %s1',                                                  desc = "Open", for = "macos" },
+  { run = 'start "" %s1', orphan = true,                               desc = "Open", for = "windows" },
+	{ run = "termux-open %s1", desc = "Open", for = "android" },
+  { run = 'nvim --server /tmp/nvim.socket --remote %s1', block = true, desc = "current nvim", for = "unix" },
+  { run = '$EDITOR %s1', block = true,                                 desc = "new nvim", for = "unix" },
 ]
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', orphan = true, desc = "Reveal", for = "linux" },
@@ -61,52 +62,58 @@ reveal = [
   { run = '''exiftool "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true,      desc = "Show EXIF", for = "unix" },
 ]
 open_image = [
-  { run = 'qimgv "$@"', orphan = true, desc = "qimgv" },
-  { run = 'nomacs --fullscreen "$@"', orphan = true, desc = "nomacs" },
-  { run = 'nsxiv "$@"', orphan = true, desc = "nsxiv" },
-  { run = 'swayimg --fullscreen "$@"', orphan = true, desc = "swayimg" },
-  { run = 'pix "$@"', orphan = true, desc = "pix" },
+  { run = 'qimgv %s1', orphan = true, desc = "qimgv" },
+  { run = 'nomacs --fullscreen %s1', orphan = true, desc = "nomacs" },
+  { run = 'nsxiv %s1', orphan = true, desc = "nsxiv" },
+  { run = 'swayimg --fullscreen %s1', orphan = true, desc = "swayimg" },
+  { run = 'pix %s1', orphan = true, desc = "pix" },
 ]
 extract = [
   # { run = 'engrampa "$@"', orphan = true, desc = "open with engrampa", for = "unix" },
-  { run = 'peazip "$@"', orphan = true, desc = "open with peazip", for = "unix" },
-  { run = 'myx.sh "$@"', desc = "Extract here with myx.sh", for = "unix" },
-  { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
-  { run = 'ya pub extract --list "$@"', desc = "Extract here with ya pub extract", for = "unix" },
-  { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
+  { run = 'peazip %s1', orphan = true, desc = "open with peazip", for = "unix" },
+  { run = 'myx.sh %s1', desc = "Extract here with myx.sh", for = "unix" },
+  { run = 'ouch d -y %s1', desc = "Extract here with ouch", for = "unix" },
+	{ run = "ya pub extract --list %s", desc = "Extract here" },
 ]
+
+download = [
+	{ run = "ya emit download --open %S", desc = "Download and open" },
+	{ run = "ya emit download %S",        desc = "Download" },
+]
+
+trash = [
+	{ run = "ya pub trash-restore --list %S", desc = "Restore selected files" },
+	{ run = "ya pub trash-empty --list %S",   desc = "Empty trash bin" },
+]
+
 pdf = [
-  { run = 'zathura --mode fullscreen "$@"', orphan = true, desc = "zathura" },
-  { run = 'sioyek "$@"', orphan = true, desc = "sioyek" },
-  { run = 'readest "$@"', orphan = true, desc = "readest" },
-  { run = 'foliate "$@"', orphan = true, desc = "foliate" },
+  { run = 'zathura --mode fullscreen %s1', orphan = true, desc = "zathura" },
+  { run = 'sioyek %s1', orphan = true, desc = "sioyek" },
+  { run = 'readest %s1', orphan = true, desc = "readest" },
+  { run = 'foliate %s1', orphan = true, desc = "foliate" },
 ]
 
 play = [
-  { run = 'mpv --force-window %*', orphan = true, for = "windows" },
+	{ run = "mpv --force-window %s1",  desc = "mpv", for = "linux", orphan = true },
+	{ run = "vlc --fullscreen %s1",    desc = "vlc", for = "linux", orphan = true },
+  { run = 'ghb $s1', orphan = true, desc = "HandBrake视频gui", for = "unix" },
 
-  # { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
-  { run = 'mpv --force-window "$@" & disown', orphan = true, desc = "mpv (disown)", for = "unix" },
-  # { run = 'vlc --fullscreen "$@"', orphan = true, desc = "vlc", for = "unix" },
-  { run = 'vlc --fullscreen "$@" & disown', orphan = true, desc = "vlc(disown)", for = "unix" },
-  { run = 'ghb "$1"', orphan = true, desc = "HandBrake视频gui", for = "unix" },
-
-  { run = 'xdg-open "$@"', orphan = true, desc = "Open with web" },
-  # { run = '''mediainfo "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true, desc = "Show media info", for = "unix" },
-  { run = '''mediainfo "$1"; tput setaf 1; echo "Press enter to exit"; tput sgr0; read _''', block = true, desc = "Show media info", for = "unix" },
-  { run = '''ffprobe "$1"; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true, desc = "Show media ffprobe", for = "unix" },
-  { run = 'mediainfo-gui "$1"', orphan = true, desc = "Show media info gui", for = "unix" },
-  { run = 'winff-qt6 "$1"', orphan = true, desc = "Show media ffprobe gui", for = "unix" },
+  { run = 'xdg-open %s1', orphan = true, desc = "Open with xdg-open" },
+  # { run = '''mediainfo %s1; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true, desc = "Show media info", for = "unix" },
+	{ run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
+	{ run = "mediainfo %s1 & pause", block = true, desc = "Show media info", for = "windows" },
+  { run = '''ffprobe %s1; echo -e "\033[31mPress enter to exit\033[0m"; read _''', block = true, desc = "Show media ffprobe", for = "unix" },
+  { run = 'mediainfo-gui %s1', orphan = true, desc = "Show media info gui", for = "unix" },
+  { run = 'winff-qt6 %s1', orphan = true, desc = "Show media ffprobe gui", for = "unix" },
 ]
 
 [open]
 rules = [
+  # Trash
+  # { url = "trash://*", use = [ "open", "trash" ] },
+  # { url = "trash://*/", use = [ "edit", "trash" ] },
   # Folder
-  { name = "*/", use = [
-    "edit",
-    "open",
-    "reveal",
-  ] },
+	{ url = "*/", use = [ "edit", "open", "reveal" ] },
   # Text
   { mime = "text/*", use = [
     "edit",
@@ -122,19 +129,13 @@ rules = [
     "play",
     "reveal",
   ] },
+
+	# Code
+	{ mime = "application/{json,ndjson,javascript,wine-extension-ini}", use = [ "edit", "reveal" ] },
   # Archive
   # { mime = "application/{zst,zstd,zip,rar,7z*,tar,gzip,gz,xz,bz,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,octet-stream,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [
     "extract",
-    "reveal",
-  ] },
-  # JSON
-  { mime = "application/{json,ndjson}", use = [
-    "edit",
-    "reveal",
-  ] },
-  { mime = "*/javascript", use = [
-    "edit",
     "reveal",
   ] },
   # pdf、epub、mobi
@@ -144,19 +145,23 @@ rules = [
     "edit",
     "reveal",
   ] },
+	# Virtual file system
+	{ mime = "vfs/{absent,stale}", use = "download" },
   # Fallback
-  { name = "*", use = [
-    "open",
-    "reveal",
-  ] },
+	{ url = "*", use = [ "open", "reveal" ] },
 ]
 
 [tasks]
-micro_workers    = 10
-macro_workers    = 10
+file_workers     = 3
+plugin_workers   = 5
+fetch_workers    = 5
+# micro_workers    = 10
+# macro_workers    = 10
+preload_workers  = 2
+process_workers  = 5
 bizarre_retry    = 3
 image_alloc      = 536870912  # 512MB
-image_bound      = [ 0, 0 ]
+image_bound      = [ 10000, 10000 ]
 suppress_preload = false
 
 prepend_rules = []
@@ -172,34 +177,19 @@ append_previewers = [
   # { mime = "*", run = "readelf" },
 ]
 
-prepend_previewers = [
-
-  # duckdb plugin
-  { name = "*.csv", run = "duckdb" },
-  { name = "*.tsv", run = "duckdb" },
-  { name = "*.json", run = "duckdb" },
-  { name = "*.parquet", run = "duckdb" },
-]
-
-prepend_preloaders = [
-
-  # duckdb plugin
-  { name = "*.csv", run = "duckdb", multi = false },  
-  { name = "*.tsv", run = "duckdb", multi = false },  
-  { name = "*.json", run = "duckdb", multi = false },  
-  { name = "*.parquet", run = "duckdb", multi = false },
-  { name = "*.db", run = "duckdb" },
-  { name = "*.duckdb", run = "duckdb" },
-]
-
 fetchers = [
-  # Mimetype
-  { id = "mime", if = "!mime", name = "*", run = "mime-ext", prio = "high" },
-  { id = "git", name = "*", run = "git" },
+	# MIME-type
+	{ url = "*/",         run = "mime.dir",    prio = "high", group = "mime" },
+	{ url = "local://*",  run = "mime.local",  prio = "high", group = "mime" },
+	# { url = "trash://*",  run = "mime.local",  prio = "high", group = "mime" },
+	{ url = "remote://*", run = "mime.remote", prio = "high", group = "mime" },
 ]
 
 spotters = [
-  { name = "*/", run = "folder" },
+	# Multi-file
+	{ mime = "multi/*", run = "multi" },
+	# Folder
+	{ url = "*/", run = "folder" },
   # Code
   { mime = "text/*", run = "code" },
   { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
@@ -209,14 +199,18 @@ spotters = [
   { mime = "image/*", run = "image" },
   # Video
   { mime = "video/*", run = "video" },
-  # Fallback
-  { name = "*", run = "file" },
+	# Virtual file system
+	{ mime = "vfs/*", run = "vfs" },
+	# Error
+	{ mime = "null/*", run = "null" },
+	# Fallback
+	{ url = "*", run = "file" },
 ]
 
-prepend_spotters = [
-  { name = "video/*", run = "spot-video" },
-  { name = "audio/*", run = "spot-audio" },
-]
+# prepend_spotters = [
+#   { name = "video/*", run = "spot-video" },
+#   { name = "audio/*", run = "spot-audio" },
+# ]
 
 preloaders = [
   # Image
@@ -233,8 +227,8 @@ preloaders = [
 ]
 
 previewers = [
-	{ name = "*/", run = "folder", sync = true },
-  # { name = "*/", run = "eza-preview" },
+	{ url = "*/", run = "folder" },
+	# Code
   { mime = "text/*", run = "code" },
   { mime = "*/xml", run = "code" },
   { mime = "*/cs", run = "code" },
@@ -252,32 +246,34 @@ previewers = [
   # Archive
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
   { mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
-  { name = "*.{AppImage,appimage}", run = "archive" },
+  { url = "*.{AppImage,appimage}", run = "archive" },
   # Virtual Disk / Disk Image
   { mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
   { mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
-  { name = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
+  { url = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
   # Font
   { mime = "font/*", run = "font" },
   { mime = "application/ms-opentype", run = "font" },
   # Empty file
   { mime = "inode/empty", run = "empty" },
+	# Virtual file system
+	{ mime = "vfs/*", run = "vfs" },
+	# Error
+	{ mime = "null/*", run = "null" },
 
   # { name = "*.md", run = "glow" },  # for markdown (.md) files
-  { name = "*.md", run = "code" },
-  { name = "*.rst", run = "rich-preview" },       # for restructured text (.rst) files
-  { name = "*.ipynb", run = "rich-preview" },     # for jupyter notebooks (.ipynb)
-  { name = "*.lang_type", run = "rich-preview" }, # for particular language files eg. .py, .go., .lua, etc.
+  { mime = "*.md", run = "code" },
+  { mime = "*.rst", run = "rich-preview" },       # for restructured text (.rst) files
+  { mime = "*.ipynb", run = "rich-preview" },     # for jupyter notebooks (.ipynb)
+  { mime = "*.lang_type", run = "rich-preview" }, # for particular language files eg. .py, .go., .lua, etc.
 
   { mime = "audio/*", run = "exifaudio" },
   { mime = "application/x-bittorrent", run = "torrent-preview" },
-
 	# Fallback
-  # { name = "*", run = "file" },
-  # { name = "*", run = "code" },
+	{ url = "*", run = "file" },
 
   # 需要安装enhance-piper插件
-  { name = "*", run  = 'enhance-piper -- echo "$1"' },
+  { mime = "*", run  = 'enhance-piper -- echo "$1"' },
 
 ]
 
@@ -332,13 +328,13 @@ delete_offset = [0, 0, 70, 20]
 
 # overwrite
 overwrite_title = "Overwrite file?"
-overwrite_content = "Will overwrite the following file:"
+overwrite_body   = "Will overwrite the following file:"
 overwrite_origin = "center"
 overwrite_offset = [0, 0, 50, 15]
 
 # quit
 quit_title = "Quit?"
-quit_content = "The following tasks are still running, are you sure you want to quit?"
+quit_body   = "There are unfinished tasks, quit anyway?\n(Open task manager with default key 'w')"
 quit_origin = "center"
 quit_offset = [0, 0, 50, 15]
 

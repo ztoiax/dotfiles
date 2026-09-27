@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "eaf6920"
-hash = "27ca02f49fd236b5cc7bf03c243859fe"
+rev = "4dc7f1b"
+hash = "5bb0bfab901d3601c370eafdd66edd31"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "eaf6920"
-hash = "3996fc74044bc44144b323686f887e1"
+rev = "4dc7f1b"
+hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
@@ -26,7 +26,7 @@ hash = "5b9dea47776a30946cfbf83232d18fb1"
 [[plugin.deps]]
 use = "kirasok/torrent-preview"
 rev = "4ca5996"
-hash = "6af40ce6b2cd849b5fa32de04a598b06"
+hash = "af73961db98bccc98c5fac59f37b49a5"
 
 [[plugin.deps]]
 use = "AnirudhG07/nbpreview"

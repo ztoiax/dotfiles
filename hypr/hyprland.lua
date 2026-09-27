@@ -255,7 +255,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("[workspace 1 silent; fullscreen] " .. browser)
 
 	-- 下载器
-	hl.exec_cmd("surge server")
+	-- hl.exec_cmd("surge server")
 
 	-- 最后切换到工作区 1
 	hl.exec_cmd("hyprctl dispatch workspace 1")

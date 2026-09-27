@@ -8,7 +8,7 @@ local mp = require 'mp'
 local options = require 'mp.options'
 
 local o = {
-    default_enable = false,
+    default_enable = true,
     show_osd = true,
     osd_timeout = 4000,
     filter_label = mp.get_script_name(),

@@ -2,21 +2,21 @@
 # Group Name
 Name=Default
 # Layout
-Default Layout=us
+Default Layout=us-altgr-weur
 # Default Input Method
-DefaultIM=pinyin
+DefaultIM=wetypex
 
 [Groups/0/Items/0]
 # Name
-Name=keyboard-us
+Name=keyboard-us-altgr-weur
 # Layout
-Layout=
+# Layout=
 
 [Groups/0/Items/1]
 # Name
-Name=pinyin
+Name=wetypex
 # Layout
-Layout=
+# Layout=
 
 [GroupOrder]
 0=Default

@@ -26,7 +26,8 @@ prepend_keymap = [
   { on = "j", run = "arrow 1" },
   { on = "K", run = "plugin parent-arrow --args=-1" },
   { on = "J", run = "plugin parent-arrow --args=1" },
-  { on = "l", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+	{ on = "l", run = "enter", desc = "Enter the child directory" },
+  # { on = "l", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
 	{ on = "L", run = "open --interactive", desc = "Open selected files interactively" },
   { on = "E", run = "plugin max-preview", desc = "Maximize or restore preview" },
 
@@ -141,7 +142,7 @@ keymap = [
 
 	# Navigation
 	{ on = "h", run = "leave", desc = "Go back to the parent directory" },
-	{ on = "l", run = "enter", desc = "Enter the child directory" },
+	# { on = "l", run = "enter", desc = "Enter the child directory" },
 
 	{ on = "<Left>",  run = "leave", desc = "Go back to the parent directory" },
 	{ on = "<Right>", run = "enter", desc = "Enter the child directory" },
