@@ -166,8 +166,9 @@ hl.bind("ALT + L", hl.dsp.exec_cmd("~/.mybin/dmenu-cpline.sh"), { locked = true,
 hl.bind("CTRL + Return", hl.dsp.exec_cmd("adb shell input keyevent 26"), { locked = true, repeating = true })
 
 -- ==================== 截图 ====================
-hl.bind(CtrlAlt .. " + A", hl.dsp.exec_cmd("hyprshot -m region -o ~/Downloads/"))
-hl.bind("Print", hl.dsp.exec_cmd("grim ~/Downloads/screen_shot_$(date +\"Y-m-d_H-M-S\").png"))
+-- hl.bind(CtrlAlt .. " + A", hl.dsp.exec_cmd("babry --save-dir ~/Downloads/"))
+hl.bind(CtrlAlt .. " + A", hl.dsp.exec_cmd("mark-shot"))
+hl.bind("Print", hl.dsp.exec_cmd("mark-shot"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
 hl.bind("ALT + Print", hl.dsp.exec_cmd("grim - | wl-copy"))
 

@@ -1,6 +1,8 @@
 [Hotkey]
 # Enumerate when holding modifier of Toggle key
 # EnumerateWithTriggerKeys=True
+# Consume redundant Activate/Deactivate key
+# ConsumeRedundantActivateKeys=False
 # Skip first input method while enumerating
 # EnumerateSkipFirst=False
 # Time limit in milliseconds for triggering modifier key shortcuts

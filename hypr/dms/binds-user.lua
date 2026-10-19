@@ -4,14 +4,22 @@
 hl.bind("ALT + TAB", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
 -- 壁纸选择
 hl.bind("SUPER + Y", hl.dsp.exec_cmd("dms ipc call dash toggle wallpaper"))
+-- 下一张壁纸
+hl.bind("CTRL + ALT + N", hl.dsp.exec_cmd("dms ipc call wallpaper next"))
+-- 上一张壁纸
+hl.bind("CTRL + ALT + P", hl.dsp.exec_cmd("dms ipc call wallpaper prev"))
+-- 切换黑夜模式
+hl.bind("ALT + SHIFT + D", hl.dsp.exec_cmd("dms ipc call theme toggle"))
 -- 聚集搜索
-hl.bind("ALT + space", hl.dsp.exec_cmd("dms ipc call spotlight-bar toggle"), { description = "dms ipc call spotlight-bar toggle" })
+hl.bind("ALT + space", hl.dsp.exec_cmd("dms ipc call spotlight-bar toggle"))
 -- 剪切板
-hl.bind("CTRL + Semicolon", hl.dsp.exec_cmd("dms ipc call clipboard toggle"), { description = "dms ipc call clipboard toggle" })
+hl.bind("CTRL + Semicolon", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
+-- 备忘录
+hl.bind("CTRL + Apostrophe", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
 -- 锁屏
-hl.bind("SUPER + SHIFT + L", hl.dsp.exec_cmd("dms ipc call lock lock"), { description = "dms ipc call lock lock" })
+hl.bind("SUPER + SHIFT + L", hl.dsp.exec_cmd("dms ipc call lock lockAndOutputsOff"))
 -- dms菜单
-hl.bind("ALT + SHIFT + space", hl.dsp.exec_cmd("dms ipc call powermenu toggle"), { description = "dms ipc call powermenu toggle" })
+hl.bind("ALT + SHIFT + space", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
 -- 任务管理器
 hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call processlist focusOrToggle"))
 -- 通知
