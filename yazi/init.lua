@@ -96,3 +96,6 @@ require('spot'):setup {
   render_metadata = true,
   render_plugins = false,
 }
+
+-- hxjump插件。https://tangled.org/ivelieu.quietism.art/hxjump.yazi
+require("hxjump"):setup()

@@ -41,10 +41,35 @@ confirm-close-surface = false
 # 点击url是否打开浏览器
 link-url = true
 
+# 启动ghostty的默认目录inherit（默认）：继承启动Ghostty进程的目录
+working-directory = "inherit"
+
+shell-integration = "detect"
+
+cursor-click-to-move = true
+
+##### notify #####
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 30s
+
+##### quick-terminal #####
+
+# 弹出位置 top / bottom / left / right / center
+quick-terminal-position = "top"
+# 窗口大小：百分比、像素都支持
+quick-terminal-size = "60%"
+# 动画时长，0=关闭动画秒
+quick-terminal-animation-duration = 0.15
+# true：点击外面失去焦点自动收起来
+quick-terminal-autohide = true
+
 ##### Keybindings #####
 
 # ghostty ghostty +list-keybinds 查看默认的快捷键
 # ghostty +list-actions 查看支持的快捷键命令
+
+keybind = global:ctrl+shift+enter=toggle_quick_terminal
 
 keybind = performable:alt+r=reload_config
 
@@ -56,14 +81,32 @@ keybind = performable:alt+j=scroll_page_down
 
 keybind = performable:alt+shift+a=select_all
 
-keybind = performable:ctrl+t=new_tab
+keybind = performable:ctrl+shift+t=new_tab
 
+keybind = performable:super+q=quit
+
+# 分屏
 keybind = performable:ctrl+shift+j=new_split:down
 keybind = performable:ctrl+shift+k=new_split:up
 keybind = performable:ctrl+shift+l=new_split:right
 keybind = performable:ctrl+shift+h=new_split:left
 
-keybind = performable:super+q=quit
+keybind = ctrl+shift+a=activate_key_table:resize
+keybind = resize/arrow_up=resize_split:up,10
+keybind = resize/arrow_down=resize_split:down,10
+keybind = resize/arrow_left=resize_split:left,10
+keybind = resize/arrow_right=resize_split:right,10
+keybind = resize/escape=deactivate_key_table
+keybind = resize/catch_all=ignore
+
+# 精确跳转到上一个和下一个命令
+keybind = performable:alt+shift+j=jump_to_prompt:1
+keybind = performable:alt+shift+k=jump_to_prompt:-1
+
+# 打开搜索UI
+keybind = performable:ctrl+f=start_search
+# 将当前选中的文字直接作为搜索词
+keybind = performable:ctrl+shift+f=search_selection
 
 # 是否开启顶部栏
 keybind = performable:alt+shift+b=toggle_window_decorations

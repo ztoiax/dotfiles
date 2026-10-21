@@ -1,7 +1,8 @@
 -- This is the main variable you will want to modify
 -- Set things like the model location and language, just avoid setting any input or output options
--- local WHISPER_CMD = "whisper-cli -m /models/whisper-ggml-medium.bin --threads 6 --language en --no-prints"
-local WHISPER_CMD = "whisper-cli -m /models/whisper-ggml-medium.bin --threads 6 --language en --no-prints"
+
+-- local WHISPER_CMD = "whisper-cli -m ~/Downloads/model/ggml-small-q5_1.bin --threads 10  --no-prints"
+local WHISPER_CMD = "whisper-cli -m ~/Downloads/model/ggml-base.bin --threads 12 -l zh --no-prints"
 
 -- Additional variables
 local CHUNK_SIZE = 15 * 1000 		 -- the amount of subs to process at a time in ms
@@ -207,4 +208,4 @@ local function toggle()
 	end
 end
 
-mp.add_key_binding('ctrl+.', 'whisper_subs', toggle)
+mp.add_key_binding('ctrl+,', 'whisper_subs', toggle)

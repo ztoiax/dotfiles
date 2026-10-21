@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "4dc7f1b"
-hash = "5bb0bfab901d3601c370eafdd66edd31"
+rev = "9166202"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "4dc7f1b"
+rev = "9166202"
 hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
@@ -67,11 +67,6 @@ hash = "f0c4b41b5d19a3144958383333eff6e7"
 use = "yazi-rs/plugins:mime-ext"
 rev = "b12a9ab"
 hash = "5e24c167e9ae9a203a48f2a438b8c705"
-
-[[plugin.deps]]
-use = "Ape/smart-enter"
-rev = "7b84c89"
-hash = "43eb1a1f2291795fb5b0b2ce1206ebee"
 
 [[plugin.deps]]
 use = "Reledia/glow"
@@ -152,6 +147,11 @@ hash = "65fff40a0060fe4b1c42d49d29f770fd"
 use = "lmnek/pandoc"
 rev = "6230a94"
 hash = "e89631ed41c2531f848dd00e211a6853"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "9166202"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [flavor]
 deps = []

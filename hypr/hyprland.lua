@@ -221,6 +221,8 @@ hl.on("hyprland.start", function()
 
 	-- 顶部栏
 	hl.exec_cmd("dms run")
+	-- hl.exec_cmd("qs -c noctalia-shell")
+	-- hl.exec_cmd("qs -c caelestia")
 
 	-- 插件与光标
 	hl.exec_cmd("hyprpm reload")
